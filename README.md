@@ -1,2 +1,2 @@
 # JAVA_Project
-"Prioject in Java"
+Mukodj te tok!!!
