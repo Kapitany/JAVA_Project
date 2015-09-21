@@ -1,0 +1,11 @@
+Órarend tervező
+Félévtervező tárgyajánlóval
+Minden teljesített félév eltárolása + tanulmányi átlag és kreditindex számoló
+TODO funkció [diáknaptár]
+Saját tárgyak felvétele [szabadon választható tárgyak]
+Profil mentés és betöltés [több profil lehetősége]
+Tárgygráf
+Update értesítő naptár alapján
+Achievmentek
+Blokkosított százalékos kreditszámláló
+Saját fáljrendszeres alap
