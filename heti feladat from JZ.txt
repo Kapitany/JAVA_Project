@@ -1,0 +1,28 @@
+﻿project plan
+-completion deadline
+-#lines
+-#class
+-time: plan/implement/test
+	never 		-><- 	now!
+	expensive 	-><-	free/low cost
+	man-month
+
+<<<<<<<<<<<<<<<<<<<<feladat eddig>>>>>>>>>>>>>>>>>>>>>>>
+
+the mythical man-month // konyv cim
+
+critical point
+
+
+ 	->requirements -->Design ( modules, class) 
+	|		    |		
+       Test<-Implementation<-
+
+
+
+	pseudocode programming process/method (eloszor pszeudo kodban megtervezzuk...)
+	skeleton (metodus hivasi lancokkal tervezzuk meg)
+
+        parban programozas, kozben magyarazkodasokkal, hogy mi hova kerul, mert ha egyedul programozol es elut a busz, kezdheti a masik ember elolrol :D
+
+
