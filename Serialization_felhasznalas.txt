@@ -1,0 +1,6 @@
+Szerializálás felhasználása:
+
+Először írunk egy programot, amibe beleégetjük az achievmenteket képpel és hanggal, majd ezeket a kész objektumokat szerializáljuk
+és kiirítjuk külön fájlokba. Így lesznek exportált achievmentjeink, amiket majd a rendes projektbe simán be tudunk olvasni objektumként.
+Persze ehhez kell írni egy programot, ami ezeket majd "generálja nekünk". Persze megírhatjuk olyanra is, hogy kézzel betallózzunk meg beolvassunk dolgokat.
+Ekkor egy később is felhasználható achievment gyártó programunk lesz!
