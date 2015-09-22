@@ -1,4 +1,4 @@
-#TÁRGY_NÉV		[csak magyarul]
+﻿#TÁRGY_NÉV		[csak magyarul]
 #TÁRGY_KÓD
 #KREDITÉRTÉK
 #ELŐFELTÉTEL 	[- ha nincs, különben #TÁRGY_KÓD]
@@ -21,3 +21,5 @@
 // Az angol záróvizsga nem előfeltétel, de NULLkredites kötelező tárgy, ezért arra a 100% teljesítéshez külön feltételt kell írni a programba
 // A testneveléseknek nincs a tantervben kódja, de kötelező NULLkredites tárgyak, ezért fantázia-tárgykóddal fogjuk őket használni
 // Az angol záróvizsgához hasonlóan a Testnevelés IV-re külön feltétel lesz írva a 100%-os teljesítésnél
+// 2DB tanterv file lenne, az egyik a vizualizálás végett félév szerint rendezve olyan formában, mint a tárgygráf, hogy könnyen "rajzolható legyen"...
+// ..a másik pedig csak a követelményeket tartalmazná számszerűsítve, mint az eredeti tanterv végén lévő táblázatok.
