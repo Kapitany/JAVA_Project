@@ -1,0 +1,5 @@
+Gyakorlati problémák modellezése diferenciál- és differenciaegyenletekkel
+VEMIMA5314m
+4
+MIMAB244m;MIKNB312f
+DIFF2
