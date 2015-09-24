@@ -19,7 +19,7 @@
 -------------------------------------------------------
 Time-plan lofasz:
 1. Saját fáljrendszeres alap (okt 4) (ALL)
-2. Tantervek (okt 4) (A+O) 
+2. Tantervek + tárgyellenőrző segédprogram (okt 4) (A+O) 
 2. Update értesítő (system calendar) alapján (okt 4) (K+P)
 3. Ideiglenes kezelőfelület (okt 11) (Á+P)
 4. Integráció (ALL)
