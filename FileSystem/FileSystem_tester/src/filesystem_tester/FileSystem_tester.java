@@ -42,10 +42,11 @@ public class FileSystem_tester {
 
     private void start() throws FileNotFoundException, IOException {
         if (subjectListLoader()) {
-            for (Subject subject : subjectList){
-                System.out.println(subject.toString());
-                System.out.println("\n");
-            }
+//            for (Subject subject : subjectList){
+//                System.out.println(subject.toString());
+//                System.out.println("\n");
+//            }
+            
         }
     }
 
