@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,10 +14,14 @@ import java.util.ArrayList;
  */
 public class FileSystem_tester {
 
-    private final ArrayList<Subject> subjectList = new ArrayList<>();
+    private final List<Subject> subjectList;
+
+    public FileSystem_tester() {
+        this.subjectList = new ArrayList<>();
+    }
 
     @SuppressWarnings("null")
-    private boolean subjectListLoader() throws FileNotFoundException, IOException {
+    public boolean subjectListLoader() throws FileNotFoundException, IOException {
         File folder = new File("baszkodok");
         if (folder == null) {
             System.out.println("The baszkodok folder should be in the project library!");
@@ -34,19 +39,32 @@ public class FileSystem_tester {
                     i++;
                 }
                 String[] reqirements = fileData[3].split(";");
-                subjectList.add(new Subject(fileData[0],fileData[1],Integer.valueOf(fileData[2]),reqirements,fileData[4]));
+                subjectList.add(new Subject(fileData[0], fileData[1], Integer.valueOf(fileData[2]), reqirements, fileData[4]));
             }
         }
         return true;
     }
 
-    private void start() throws FileNotFoundException, IOException {
+    public void dependenceTest() {
+        for (Subject s : subjectList) {
+            String[] requirement = s.getRequirements();
+            for (int i = 0; i < s.getRequirements().length; i++) {
+                for (Subject st : subjectList) {
+                    if (requirement[i].equals(st.getSubjactCode())) {
+                        System.out.println(s.getSubjactName() + " subject's requirement is: " + st.getSubjactName());
+                    }
+                }
+            }
+        }
+    }
+
+    public void start() throws FileNotFoundException, IOException {
         if (subjectListLoader()) {
 //            for (Subject subject : subjectList){
 //                System.out.println(subject.toString());
 //                System.out.println("\n");
 //            }
-            
+            dependenceTest();
         }
     }
 
