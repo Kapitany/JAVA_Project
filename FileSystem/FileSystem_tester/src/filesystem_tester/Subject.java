@@ -1,5 +1,7 @@
 package filesystem_tester;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Tomega
@@ -38,4 +40,16 @@ class Subject {
     public String getSubjactType() {
         return subjactType;
     }
+
+    @Override
+    public String toString() {
+        return subjactName + "\n" +
+                subjactCode + "\n" +
+                creditValue + "\n" +
+                Arrays.toString(requirements) + "\n" +
+                subjactType;
+    }
+    
+    
+    
 }
