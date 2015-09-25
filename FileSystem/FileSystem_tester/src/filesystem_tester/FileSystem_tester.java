@@ -50,11 +50,14 @@ public class FileSystem_tester {
             String[] requirement = s.getRequirements();
             for (int i = 0; i < s.getRequirements().length; i++) {
                 for (Subject st : subjectList) {
-                    if (requirement[i].equals(st.getSubjactCode())) {
-                        System.out.println(s.getSubjactName() + " subject's requirement is: " + st.getSubjactName());
+                    if (requirement[i].equals(st.getSubjactCode()) && i>0) {
+                        System.out.print(", " + st.getSubjactName() );
+                    }else if (requirement[i].equals(st.getSubjactCode())){
+                        System.out.print( "\n" +st.getSubjactName());
                     }
                 }
             }
+            System.out.print( " -> " +s.getSubjactName() +"\n");           
         }
     }
 
