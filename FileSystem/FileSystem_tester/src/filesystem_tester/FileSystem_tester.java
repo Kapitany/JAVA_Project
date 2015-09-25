@@ -50,14 +50,18 @@ public class FileSystem_tester {
             String[] requirement = s.getRequirements();
             for (int i = 0; i < s.getRequirements().length; i++) {
                 for (Subject st : subjectList) {
-                    if (requirement[i].equals(st.getSubjactCode()) && i>0) {
-                        System.out.print(", " + st.getSubjactName() );
-                    }else if (requirement[i].equals(st.getSubjactCode())){
-                        System.out.print( "\n" +st.getSubjactName());
+                    if (requirement[i].equals(st.getSubjactCode()) && i > 0) {
+                        System.out.print(", " + st.getSubjactName());
+                    } else if (requirement[i].equals(st.getSubjactCode())) {
+                        System.out.print("\n" + st.getSubjactName());
+                    } else if ((requirement[i].equals(st.getSubjactCode()) || requirement[i].equals("(" + st.getSubjactCode() + ")")) && i > 0) {
+                        System.out.print(", " + st.getSubjactName() + "[parallel]");
+                    } else if (requirement[i].equals(st.getSubjactCode()) || requirement[i].equals("(" + st.getSubjactCode() + ")")) {
+                        System.out.print("\n" + st.getSubjactName() + "[parallel]");
                     }
                 }
             }
-            System.out.print( " -> " +s.getSubjactName() +"\n");           
+            System.out.print(" -> " + s.getSubjactName() + "\n");
         }
     }
 
