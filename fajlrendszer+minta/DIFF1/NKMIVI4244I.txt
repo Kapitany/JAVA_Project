@@ -1,4 +1,4 @@
-Irányítási algoritmusok tervezése**
+Irányítási algoritmusok tervezése
 NKMIVI4244I
 4
 MKVI2244i;MIVI2212M

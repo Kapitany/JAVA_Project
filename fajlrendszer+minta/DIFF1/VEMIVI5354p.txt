@@ -1,4 +1,4 @@
-SAP vállalatirányítási rendszer II. Programozási alapok*
+SAP vállalatirányítási rendszer II. Programozási alapok
 VEMIVI5354p
 4
 MIVI5344i

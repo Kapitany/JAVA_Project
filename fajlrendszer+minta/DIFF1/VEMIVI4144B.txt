@@ -1,4 +1,4 @@
-FPGA alapú beágyazott rendszerek*
+FPGA alapú beágyazott rendszerek
 VEMIVI4144B
 4
 VEMIVIB544T
