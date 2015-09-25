@@ -1,0 +1,5 @@
+Adatbázis-kezelés: ORACLE
+MISA5332o
+2
+MKSA5144a
+DIFF1

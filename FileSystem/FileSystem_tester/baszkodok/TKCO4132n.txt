@@ -1,0 +1,5 @@
+A .NET framework és programozása C# nyelven
+TKCO4132n
+2
+MISA2354k
+DIFF1
