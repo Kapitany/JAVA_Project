@@ -54,9 +54,9 @@ public class FileSystem_tester {
                         System.out.print(", " + st.getSubjactName());
                     } else if (requirement[i].equals(st.getSubjactCode())) {
                         System.out.print("\n" + st.getSubjactName());
-                    } else if ((requirement[i].equals(st.getSubjactCode()) || requirement[i].equals("(" + st.getSubjactCode() + ")")) && i > 0) {
+                    } else if (requirement[i].equals("(" + st.getSubjactCode() + ")") && i > 0) {
                         System.out.print(", " + st.getSubjactName() + "[parallel]");
-                    } else if (requirement[i].equals(st.getSubjactCode()) || requirement[i].equals("(" + st.getSubjactCode() + ")")) {
+                    } else if (requirement[i].equals("(" + st.getSubjactCode() + ")")) {
                         System.out.print("\n" + st.getSubjactName() + "[parallel]");
                     }
                 }
