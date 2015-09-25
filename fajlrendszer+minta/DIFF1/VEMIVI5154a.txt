@@ -1,0 +1,5 @@
+Adatbáziskezelő rendszerek megvalósítása*
+VEMIVI5154a
+4
+MKSA5144a
+DIFF1

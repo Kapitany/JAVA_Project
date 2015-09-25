@@ -1,0 +1,5 @@
+Matematikai programcsomagok
+MIMA4152P
+2
+MIMAB146m;MKMA1143V
+DIFF1
