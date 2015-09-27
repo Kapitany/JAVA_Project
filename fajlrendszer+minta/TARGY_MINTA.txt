@@ -1,8 +1,9 @@
-﻿#TÁRGY_NÉV		[csak magyarul]
+﻿#TÁRGY_NÉV			[csak magyarul]
 #TÁRGY_KÓD
 #KREDITÉRTÉK
-#ELŐFELTÉTEL 	[- ha nincs, különben #TÁRGY_KÓD]
-#TÁRGYTÍPUS 	[KOT, HUM, DIFF1, DIFF2]
+#TÁRGYELŐFELTÉTEL 	[- ha nincs, különben #TÁRGY_KÓD]
+#TÁRGYTÍPUS 		[KOT, HUM, DIFF1, DIFF2]
+#KREDITELŐFELTÉTEL
 
 // Szabadon választható tárgyak ha jól láttam nincsenek a tantervben
 // A tanterv felépítése az eredetihez hasonló lesz

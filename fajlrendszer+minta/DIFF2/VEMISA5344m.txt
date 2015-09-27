@@ -1,0 +1,5 @@
+Műszaki rendszerek
+VEMISA5344m
+4
+VEMIMAB244m;VEMIKNB312f
+DIFF2

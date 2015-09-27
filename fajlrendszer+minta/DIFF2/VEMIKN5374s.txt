@@ -1,5 +1,5 @@
 Színtervezés számítógépes felhasználás számára
 VEMIKN5374s
 4
-MIKN1252p;MIKNB312f 
+VEMIKN1252p;VEMIKNB312f 
 DIFF2

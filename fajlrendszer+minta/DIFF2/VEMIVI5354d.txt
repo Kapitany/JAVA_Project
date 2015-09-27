@@ -1,5 +1,5 @@
 Modell alapú diagnosztika diszkrét módszerekkel
 VEMIVI5354d
 4
-MIKNB312f
+VEMIKNB312f
 DIFF2
