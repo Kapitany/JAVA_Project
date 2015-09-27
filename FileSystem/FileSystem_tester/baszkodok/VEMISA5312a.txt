@@ -1,5 +1,5 @@
 Az informatika ipari alkalmazásai
 VEMISA5312a
 2
-MISA2254b;MIKNB312f
+VEMISA2254b;VEMIKNB312f
 DIFF1

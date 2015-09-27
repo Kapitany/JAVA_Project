@@ -1,5 +1,0 @@
-Felhasználói interfészek tervezése
-MIKN5312i
-2
-MISA2254b;MKSA3114s
-DIFF1
