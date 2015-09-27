@@ -32,14 +32,14 @@ public class FileSystem_tester {
             for (File file : folder.listFiles()) {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 String line;
-                String[] fileData = new String[5];
+                String[] fileData = new String[6];
                 int i = 0;
                 while ((line = reader.readLine()) != null) {
                     fileData[i] = line;
                     i++;
                 }
                 String[] reqirements = fileData[3].split(";");
-                subjectList.add(new Subject(fileData[0], fileData[1], Integer.valueOf(fileData[2]), reqirements, fileData[4]));
+                subjectList.add(new Subject(fileData[0], fileData[1], Integer.valueOf(fileData[2]), reqirements, fileData[4], Integer.valueOf(fileData[5])));
             }
         }
         return true;
@@ -60,6 +60,9 @@ public class FileSystem_tester {
                         System.out.print("\n" + st.getSubjactName() + "[parallel]");
                     }
                 }
+            }
+            if (s.getCreditRequirement() == 75) {
+                System.out.print("\n75 credits");
             }
             System.out.print(" -> " + s.getSubjactName() + "\n");
         }

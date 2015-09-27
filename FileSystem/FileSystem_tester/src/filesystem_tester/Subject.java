@@ -12,13 +12,15 @@ class Subject {
     private final int creditValue;
     private final String[] requirements;
     private final String subjactType;
+    private final int creditRequirement;
 
-    public Subject(String subjactName, String subjactCode, int creditValue, String[] requirements, String subjactType) {
+    public Subject(String subjactName, String subjactCode, int creditValue, String[] requirements, String subjactType, int creditRequirement) {
         this.subjactName = subjactName;
         this.subjactCode = subjactCode;
         this.creditValue = creditValue;
         this.requirements = requirements;
         this.subjactType = subjactType;
+        this.creditRequirement = creditRequirement;
     }
 
     public String getSubjactName() {
@@ -40,6 +42,10 @@ class Subject {
     public String getSubjactType() {
         return subjactType;
     }
+    
+    public int getCreditRequirement() {
+        return creditRequirement;
+    }
 
     @Override
     public String toString() {
@@ -47,7 +53,8 @@ class Subject {
                 subjactCode + "\n" +
                 creditValue + "\n" +
                 Arrays.toString(requirements) + "\n" +
-                subjactType;
+                subjactType + "\n" +
+                creditRequirement;
     }
     
     
