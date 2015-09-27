@@ -1,5 +1,5 @@
 Bevezetés a lágy számítás módszereibe
-VEMIMAB512L
+VEMIMAB512l
 2
 VEMIMA1344i;VEMISA2254b
 DIFF1
