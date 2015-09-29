@@ -12,3 +12,6 @@ Leírás: JavaFX dokumentáció/tutorial
 
 URL: http://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-1x-archive-2199384.html#javafx-scenebuilder-2.0-oth-JPR
 Leírás: JavaFX SceneBuilder letöltés [2.0-t érdemes]... Netbeans integrálás: tools/options/java/javafx/Scene Builder Home:<ide betallózod a mappát, ahova telepítetted>
+
+URL: https://ustesis.wordpress.com/2013/07/12/gui-generation-with-javafx/
+Leírás: Alternatív GUI generátorok FX-hez [ismeretlenek]
