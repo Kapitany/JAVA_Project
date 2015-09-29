@@ -9,3 +9,6 @@ Leírás: JavaFX demok forráskóddal
 
 URL: http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
 Leírás: JavaFX dokumentáció/tutorial
+
+URL: http://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-1x-archive-2199384.html#javafx-scenebuilder-2.0-oth-JPR
+Leírás: JavaFX SceneBuilder letöltés [2.0-t érdemes]... Netbeans integrálás: tools/options/java/javafx/Scene Builder Home:<ide betallózod a mappát, ahova telepítetted>
