@@ -6,3 +6,6 @@ Leírás: JUnit kezdõknek
 
 URL: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 Leírás: JavaFX demok forráskóddal
+
+URL: http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
+Leírás: JavaFX dokumentáció/tutorial
