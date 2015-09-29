@@ -1,8 +1,8 @@
-URL: 	  	https://docs.oracle.com/javase/8/javafx/user-interface-tutorial/date-picker.htm
-Leírás:		Date Picker Java FX-ben. A TODO-s résznél nagyon hasznos lehet majd
+URL: https://docs.oracle.com/javase/8/javafx/user-interface-tutorial/date-picker.htm
+Leírás: Date Picker Java FX-ben. A TODO-s résznél nagyon hasznos lehet majd
 
-URL:			https://www.youtube.com/watch?v=Q0ue-T0Z6Zs
-Leírás:		JUnit kezdõknek
+URL: https://www.youtube.com/watch?v=Q0ue-T0Z6Zs
+Leírás: JUnit kezdõknek
 
-URL:      http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-Leírás:   JavaFX demok forráskóddal
+URL: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+Leírás: JavaFX demok forráskóddal
