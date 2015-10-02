@@ -1,0 +1,14 @@
+Az első sor tartalmazza a nevet értelemszerűen.
+Splitelés után az 1-es indexű, azaz a második elem a fontos metaadat.
+Splitelni mindig kettőspontnál kell.
+A második sor tartalmazza, hogy hány 'globális követelmény van a diplomához'.
+A globális követelményeket egy számláló fogja tartalmazni, ami nulláról indul.
+Amint ez a globális számláló eléri a kívánt értéket, ami most ebben az esetben 3 a tanterv 100% lesz.
+A globális követelmények száma megadja, hogy mennyi darab csillaggal jelzett sornak kell 'teljesülnie'.
+Mindegyik csillaggal jelzett sor szintén egy számláló, splitelés után a 3. adat a lényeges metaadat.
+Amikor egy ilyen számláló a nulláról eléri a kívánt értéket a globális számláló nő eggyel.
+A csillaggal jezlett sorok számlálói nem csak azt adják meg, hogy az a sor mikor teljesül, hanem hogy mennyi követelmény tartozik hozzá [azaz mennyi sorban vannak eltárolva ezek].
+Ezek a sorok a nyíllal jelzett sorok.
+Így elég a programnak nem kell semmilyen tantervspecifikus adatot tartalmaznia és általánosan működhet bármilyen [legalábbis PEMIK-es] tantervvel.
+
+Hogy ezt milyen osztályokkal kellene megoldani nem terveztem meg, nem a tanterv része.
