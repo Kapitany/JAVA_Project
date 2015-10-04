@@ -1,0 +1,6 @@
+Az első sor tartalmazza a szak nevét.
+A másodikban található a félévek száma, ez megadja, hogy hány szintje lesz a gráfnak.
+A félévek sorban jönnek, de hogy rendesen azonosíthassuk a féléveket, az első adat a félév sorszáma lesz, mögötte ":"-al elválasztva az arra a félévre ajánlott kredit mennyisége szerepel, majd a tárgyak és tárgytípusok száma.
+A félévek után "->"-al felsorolva a tárgyak kódjai. 
+Ha vannak szabadon választható, vagy diffes kreditek, akkor azt az azonosítóval és az ajánlott kredit mennyiségével jelezzük. PL: (DIF1:4)
+A tárgy kódok mellé nem írtam kreditet, mivel a fileokban benne van, és úgyis meg kell nézni az előfeltételeket majd.
