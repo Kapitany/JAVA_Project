@@ -22,9 +22,9 @@ public class FileSystem_tester {
 
     @SuppressWarnings("null")
     public boolean subjectListLoader() throws FileNotFoundException, IOException {
-        File folder = new File("FileSystem_final");
+        File folder = new File("Subjects");
         if (folder == null) {
-            System.out.println("The 'FileSystem_final' folder should be in the project library!");
+            System.out.println("The 'Subjects' folder should be in the project library!");
             System.out.println("Now exiting...");
             return false;
         }
