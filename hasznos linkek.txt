@@ -15,3 +15,6 @@ Leírás: JavaFX SceneBuilder letöltés [2.0-t érdemes]... Netbeans integrál�
 
 URL: https://ustesis.wordpress.com/2013/07/12/gui-generation-with-javafx/
 Leírás: Alternatív GUI generátorok FX-hez [ismeretlenek]
+
+URL: https://docs.oracle.com/javase/8/docs/api/java/beans/PropertyChangeListener.html
+Leírás: PropertyChangeListener, a globális számlálók megváltozásának figyeléséhez, amik majd Propery objektumok lesznek, ha minden igaz
