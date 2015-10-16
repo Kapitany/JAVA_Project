@@ -55,6 +55,13 @@ JZ-nek elküldött verzió:
 13. "Achievment rendszer" + achievment generáló segédprogram (nov. 22) (Sz.Ádám+Alex+Lajos)
 14. Profil mentés és betöltés [több profil lehetősége] (nov. 29) (MINDENKI)
 15. Végleges kezelőfelület + Integráció (dec. 13) (MINDENKI)
+*16. JZ kedvéért ha lesz rá idő:
+Fájlrendszer javítása olyan módon, hogy minden fájlban minden sor elé odekerül egy 4 karakteres kód, pl #NAM, #CRE, #REQ.
+A kiterjesztéseket .txt-ről .subj-ra cseréljük. A program indulásakor a tanterv kiválasztása után de még a tényleges felület előtt
+lefut egy tanterv ellenőrző segédprogram, ami egy a tantervhez tartozó .ini fájl betallózását kéri.
+Ez a fájl a tantervvel együtt érkezik és a szerkezeti leírást tartalmazza, ami az elleőrzéshez kell.
+Ez végigmegy mindenen és csekkolja, hogy nincs-e valahol belenyúlva. [Ehhez kellenek a kiegészítések a subjectekbe].
+Ha valahol korrupt a rendszer akkor egy saját cutom exceptiont dob és nem engedi tovább a felhasználót.
 [FOLYAMATOS TESZTELÉS]
 
 Körülbelül 25 osztályra és 10000 sorra számítunk, de ez inkább alsó becslés.
