@@ -1,0 +1,6 @@
+Adatbázis-kezelés: ORACLE
+VEMISA5332o
+2
+VEMKSA5144a
+DIFF1
+0
