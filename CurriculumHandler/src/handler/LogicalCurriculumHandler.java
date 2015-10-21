@@ -31,16 +31,14 @@ public class LogicalCurriculumHandler {
     //numberOfCreditTypes elemszámú lista, ami kulcs-érték párokat tartalmaz -> kredittípus és a mennyiségi követelmény
     @SuppressWarnings("FieldMayBeFinal")
     private ArrayList<Map<String, Integer>> perTypeCounter;
-    @SuppressWarnings("FieldMayBeFinal")
-    private int creditOverflow;
-    
+
     private final int numExtraReqs;
     private final ArrayList<String> listExtraReqs;
-    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FieldMayBeFinal"})
     private ArrayList<Map<String, Boolean>> isExtraCompleted;
 
     private final String extraCreditsTo;
-    
+
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
@@ -86,13 +84,13 @@ public class LogicalCurriculumHandler {
             Map<String, Integer> typePlusQuantity = new HashMap<>();
             typePlusQuantity.putIfAbsent(tmpArray[2], Integer.valueOf(tmpArray[3]));
             creditTypes.add(typePlusQuantity);
-            
+
             typePlusQuantity = new HashMap<>();
             typePlusQuantity.putIfAbsent(tmpArray[2], 0);
             perTypeCounter.add(typePlusQuantity);
             tmpList.remove(0);
-        }    
-        
+        }
+
         tmpArray = tmpList.get(0).split(":");
         numExtraReqs = Integer.valueOf(tmpArray[2]);
         tmpList.remove(0);
@@ -102,20 +100,18 @@ public class LogicalCurriculumHandler {
         for (int i = 0; i < numExtraReqs; i++) {
             tmpArray = tmpList.get(0).split(":");
             listExtraReqs.add(tmpArray[2]);
-            
+
             Map<String, Boolean> extraReq = new HashMap<>();
             extraReq.putIfAbsent(listExtraReqs.get(i), Boolean.FALSE);
             isExtraCompleted.add(extraReq);
-            
+
             tmpList.remove(0);
         }
-        
-        creditOverflow = 0;
 
         tmpArray = tmpList.get(0).split(":");
         extraCreditsTo = tmpArray[1];
         tmpList.remove(0);
-        
+
         if (!tmpList.isEmpty()) {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
         }
@@ -149,9 +145,33 @@ public class LogicalCurriculumHandler {
     public void completeGlobalReq() {
         numCompletedGlobalReqs++;
     }
-    
+
     public void receiveCredits(int creditValue) {
         creditsReceived += creditValue;
     }
-    
+
+    public void addSpecificCredit(String creditType, int creditValue) {
+        receiveCredits(creditValue);
+        for (int i = 0; i < numberOfCreditTypes; i++) {
+            if (perTypeCounter.get(i).containsKey(creditType) && perTypeCounter.get(i).get(creditType) + creditValue <= creditTypes.get(i).get(creditType)) {
+                perTypeCounter.get(i).replace(creditType, perTypeCounter.get(i).get(creditType), perTypeCounter.get(i).get(creditType) + creditValue);
+            } else if (perTypeCounter.get(i).containsKey(creditType)) {
+                int difference = perTypeCounter.get(i).get(creditType) + creditValue - creditTypes.get(i).get(creditType);
+                perTypeCounter.get(i).replace(creditType, perTypeCounter.get(i).get(creditType), creditTypes.get(i).get(creditType));
+                for (int j = 0; j < numberOfCreditTypes; j++) {
+                    if (perTypeCounter.get(j).containsKey(extraCreditsTo)) {
+                        perTypeCounter.get(j).replace(extraCreditsTo, perTypeCounter.get(j).get(extraCreditsTo), perTypeCounter.get(j).get(extraCreditsTo) + difference);
+                    }
+                }
+            }
+        }
+    }
+
+    public void completeExtra(String subjectCode) {
+        for (int i = 0; i < numExtraReqs; i++) {
+            if (isExtraCompleted.get(i).containsKey(subjectCode)) {
+                isExtraCompleted.get(i).replace(subjectCode, Boolean.FALSE, Boolean.TRUE);
+            }
+        }
+    }
 }
