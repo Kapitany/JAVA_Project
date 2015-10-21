@@ -31,12 +31,16 @@ public class LogicalCurriculumHandler {
     //numberOfCreditTypes elemszámú lista, ami kulcs-érték párokat tartalmaz -> kredittípus és a mennyiségi követelmény
     @SuppressWarnings("FieldMayBeFinal")
     private ArrayList<Map<String, Integer>> perTypeCounter;
+    @SuppressWarnings("FieldMayBeFinal")
     private int creditOverflow;
     
     private final int numExtraReqs;
     private final ArrayList<String> listExtraReqs;
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private ArrayList<Map<String, Boolean>> isExtraCompleted;
 
+    private final String extraCreditsTo;
+    
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
@@ -94,6 +98,7 @@ public class LogicalCurriculumHandler {
         tmpList.remove(0);
 
         listExtraReqs = new ArrayList<>();
+        isExtraCompleted = new ArrayList<>();
         for (int i = 0; i < numExtraReqs; i++) {
             tmpArray = tmpList.get(0).split(":");
             listExtraReqs.add(tmpArray[2]);
@@ -107,6 +112,10 @@ public class LogicalCurriculumHandler {
         
         creditOverflow = 0;
 
+        tmpArray = tmpList.get(0).split(":");
+        extraCreditsTo = tmpArray[1];
+        tmpList.remove(0);
+        
         if (!tmpList.isEmpty()) {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
         }
@@ -129,6 +138,7 @@ public class LogicalCurriculumHandler {
             System.out.println("The codes of these subjects are the following:");
             System.out.println(listExtraReqs);
         }
+        System.out.println("Extra credits are reallocated to '" + extraCreditsTo + "' block.");
         System.out.println("******************************************");
     }
 
