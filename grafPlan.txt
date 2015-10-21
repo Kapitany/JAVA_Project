@@ -1,0 +1,10 @@
+Lesz egy nagy lista, ami a keret.
+Ebben lesz a mi esetünkben 7 lista, amik a félévek.
+Mindengyik lista fel lesz töltve a gráf tanterv fájl alapján.
+Opcionális: A régi, már feltöltött, ömlesztett listából másoljuk át a tárgyakat úgy, hogy rákeresünk a kívántra tárgykód szerint.
+A gráf MVC szerint fog mûködni.
+A modell osztály egyetelen adattagja a nagy lista, egyetlen metódusa pedig a konstruktor. A lista final.
+Ez alapján fogjuk felépíteni a view-t, az alapján pedig a controllt.
+A gráf csak és kizárólag grafikai elem, nincs köze a többi modulhoz, ezért kell neki szeparálható forrás, ami csak olvasható.
+Egyetlen módosítás a view-ban történik, amit a controll fog végezni. Ez az elõrehaladással párhuzamosan történik, minden féléves terv végén [minden félév zárásakor].
+Ezen kívül a ráépülések megtekinthetõk pl egérmozgatással, mint a tárgygráfnál is.
