@@ -29,9 +29,13 @@ public class LogicalCurriculumHandler {
     private final int numberOfCreditTypes;
     private final ArrayList<Map<String, Integer>> creditTypes;
     //numberOfCreditTypes elemszámú lista, ami kulcs-érték párokat tartalmaz -> kredittípus és a mennyiségi követelmény
-
+    @SuppressWarnings("FieldMayBeFinal")
+    private ArrayList<Map<String, Integer>> perTypeCounter;
+    private int creditOverflow;
+    
     private final int numExtraReqs;
     private final ArrayList<String> listExtraReqs;
+    private ArrayList<Map<String, Boolean>> isExtraCompleted;
 
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
@@ -72,14 +76,19 @@ public class LogicalCurriculumHandler {
         tmpList.remove(0);
 
         creditTypes = new ArrayList<>();
+        perTypeCounter = new ArrayList<>();
         for (int i = 0; i < numberOfCreditTypes; i++) {
             tmpArray = tmpList.get(0).split(":");
             Map<String, Integer> typePlusQuantity = new HashMap<>();
             typePlusQuantity.putIfAbsent(tmpArray[2], Integer.valueOf(tmpArray[3]));
             creditTypes.add(typePlusQuantity);
+            
+            typePlusQuantity = new HashMap<>();
+            typePlusQuantity.putIfAbsent(tmpArray[2], 0);
+            perTypeCounter.add(typePlusQuantity);
             tmpList.remove(0);
-        }
-
+        }    
+        
         tmpArray = tmpList.get(0).split(":");
         numExtraReqs = Integer.valueOf(tmpArray[2]);
         tmpList.remove(0);
@@ -88,8 +97,15 @@ public class LogicalCurriculumHandler {
         for (int i = 0; i < numExtraReqs; i++) {
             tmpArray = tmpList.get(0).split(":");
             listExtraReqs.add(tmpArray[2]);
+            
+            Map<String, Boolean> extraReq = new HashMap<>();
+            extraReq.putIfAbsent(listExtraReqs.get(i), Boolean.FALSE);
+            isExtraCompleted.add(extraReq);
+            
             tmpList.remove(0);
         }
+        
+        creditOverflow = 0;
 
         if (!tmpList.isEmpty()) {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
@@ -120,4 +136,12 @@ public class LogicalCurriculumHandler {
         return pathSubjects;
     }
 
+    public void completeGlobalReq() {
+        numCompletedGlobalReqs++;
+    }
+    
+    public void receiveCredits(int creditValue) {
+        creditsReceived += creditValue;
+    }
+    
 }
