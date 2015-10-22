@@ -8,28 +8,28 @@ import java.util.Arrays;
  */
 class Subject {
 
-    private final String subjactName;
-    private final String subjactCode;
+    private final String subjectName;
+    private final String subjectCode;
     private final int creditValue;
     private final String[] requirements;
-    private final String subjactType;
+    private final String subjectType;
     private final int creditRequirement;
 
-    public Subject(String subjactName, String subjactCode, int creditValue, String[] requirements, String subjactType, int creditRequirement) {
-        this.subjactName = subjactName;
-        this.subjactCode = subjactCode;
+    public Subject(String subjectName, String subjectCode, int creditValue, String[] requirements, String subjectType, int creditRequirement) {
+        this.subjectName = subjectName;
+        this.subjectCode = subjectCode;
         this.creditValue = creditValue;
         this.requirements = requirements;
-        this.subjactType = subjactType;
+        this.subjectType = subjectType;
         this.creditRequirement = creditRequirement;
     }
 
-    public String getSubjactName() {
-        return subjactName;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public String getSubjactCode() {
-        return subjactCode;
+    public String getSubjectCode() {
+        return subjectCode;
     }
 
     public int getCreditValue() {
@@ -40,8 +40,8 @@ class Subject {
         return requirements;
     }
 
-    public String getSubjactType() {
-        return subjactType;
+    public String getSubjectType() {
+        return subjectType;
     }
 
     public int getCreditRequirement() {
@@ -50,11 +50,11 @@ class Subject {
 
     @Override
     public String toString() {
-        return subjactName + "\n"
-                + subjactCode + "\n"
+        return subjectName + "\n"
+                + subjectCode + "\n"
                 + creditValue + "\n"
                 + Arrays.toString(requirements) + "\n"
-                + subjactType + "\n"
+                + subjectType + "\n"
                 + creditRequirement;
     }
 }

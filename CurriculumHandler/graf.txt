@@ -1,4 +1,4 @@
-#NAME:Mérnökinformatikus BSc
+#NAME:MÃ©rnÃ¶kinformatikus BSc
 #SEMESTERS:7
 *:SEMESTER:1:31:10
 ->SOURCE:1.felev.txt
@@ -15,9 +15,9 @@
 *:SEMESTER:7:28:4
 ->SOURCE:7.felev.txt
 #EXTRA_CREDIT_TYPES_STORED:3
-*:HUM
+*:HUM:18
 ->SOURCE:grafred_HUM
-*:DIF1
+*:DIF1:31
 ->SOURCE:grafred_DIF1
-*:DIF2
+*:DIF2:10
 ->SOURCE:grafred_DIF2

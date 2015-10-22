@@ -17,6 +17,8 @@ public class MainClass {
             SubjectListLoader loader = new SubjectListLoader(handler.getSubjPath());
 //            loader.listSubjects();
 //            DependenceViewer viewer = new DependenceViewer(loader.getSubjectList());
+            GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList());
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             System.err.println("Initialisation aborted!");

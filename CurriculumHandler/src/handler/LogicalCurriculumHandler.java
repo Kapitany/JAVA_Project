@@ -42,7 +42,7 @@ public class LogicalCurriculumHandler {
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
-        logCurrFile = new File("MI_logikai.txt");
+        logCurrFile = new File("logikai.txt");
         numCompletedGlobalReqs = 0;
         creditsReceived = 0;
         try {
@@ -53,7 +53,7 @@ public class LogicalCurriculumHandler {
                 tmpList.add(tmp);
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("The 'MI_logikai.txt' file should be in the project's root directory!");
+            System.out.println("The 'logikai.txt' file should be in the project's root directory!");
         } catch (IOException ex) {
             System.out.println("IOException has occured, please check the input file and rerun the program!");
         }
