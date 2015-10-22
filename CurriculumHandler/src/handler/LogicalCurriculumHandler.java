@@ -17,7 +17,7 @@ import java.util.Map;
 public class LogicalCurriculumHandler {
 
     private final File logCurrFile;
-    private final String name;
+    private final String curriculumName;
     private final String pathSubjects;
 
     private final int numGlobalReqs;                //mindig 3
@@ -37,7 +37,7 @@ public class LogicalCurriculumHandler {
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "FieldMayBeFinal"})
     private ArrayList<Map<String, Boolean>> isExtraCompleted;
 
-    private final String extraCreditsTo;
+    private final String creditOverflowTo;
 
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
@@ -58,7 +58,7 @@ public class LogicalCurriculumHandler {
             System.out.println("IOException has occured, please check the input file and rerun the program!");
         }
         tmpArray = tmpList.get(0).split(":");
-        name = tmpArray[1];
+        curriculumName = tmpArray[1];
         tmpList.remove(0);
 
         tmpArray = tmpList.get(0).split(":");
@@ -109,20 +109,20 @@ public class LogicalCurriculumHandler {
         }
 
         tmpArray = tmpList.get(0).split(":");
-        extraCreditsTo = tmpArray[1];
+        creditOverflowTo = tmpArray[1];
         tmpList.remove(0);
 
         if (!tmpList.isEmpty()) {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
         }
-        System.out.println(name + " initialised!");
+        System.out.println(curriculumName + " initialised!");
     }
 
     public void list() {
         System.out.println("******************************************");
         System.out.println("LISTING DATA:");
         System.out.println("******************************************");
-        System.out.println("Name: " + name);
+        System.out.println("Name: " + curriculumName);
         System.out.println("Source folder for the subjects: " + pathSubjects + "/");
         System.out.println("Number of global requirements to 100% completion: " + numGlobalReqs);
         System.out.println("Number of credits to receive: " + creditsToReceive);
@@ -134,7 +134,7 @@ public class LogicalCurriculumHandler {
             System.out.println("The codes of these subjects are the following:");
             System.out.println(listExtraReqs);
         }
-        System.out.println("Extra credits are reallocated to '" + extraCreditsTo + "' block.");
+        System.out.println("Extra credits are reallocated to '" + creditOverflowTo + "' block.");
         System.out.println("******************************************");
     }
 
@@ -159,8 +159,8 @@ public class LogicalCurriculumHandler {
                 int difference = perTypeCounter.get(i).get(creditType) + creditValue - creditTypes.get(i).get(creditType);
                 perTypeCounter.get(i).replace(creditType, perTypeCounter.get(i).get(creditType), creditTypes.get(i).get(creditType));
                 for (int j = 0; j < numberOfCreditTypes; j++) {
-                    if (perTypeCounter.get(j).containsKey(extraCreditsTo)) {
-                        perTypeCounter.get(j).replace(extraCreditsTo, perTypeCounter.get(j).get(extraCreditsTo), perTypeCounter.get(j).get(extraCreditsTo) + difference);
+                    if (perTypeCounter.get(j).containsKey(creditOverflowTo)) {
+                        perTypeCounter.get(j).replace(creditOverflowTo, perTypeCounter.get(j).get(creditOverflowTo), perTypeCounter.get(j).get(creditOverflowTo) + difference);
                     }
                 }
             }
