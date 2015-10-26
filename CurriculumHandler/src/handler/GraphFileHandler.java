@@ -97,25 +97,33 @@ public class GraphFileHandler {
         numExtraCreditTypes = Integer.valueOf(tmpArray[1]);
         tmpList.remove(0);
 
-        //eddig csak rendezés, innen új kód
-        //a grafred mappákat listákra cseréltem, mert ha a régi listákból keresünk tárgyakat akkor elég csak a kódokat tudni
-        //egy két ideiglenes változó rettenetesen értelmezhetetlenül volt elnevezve -> javítva
         extraCreditTypes = new String[numExtraCreditTypes];
 
         for (int i = 0; i < numExtraCreditTypes; i++) {
+            graphContainer.add(new ArrayList<>());
             tmpArray = tmpList.get(0).split(":");
-            extraCreditTypes[i] = tmpArray[0];
-            int numSubjects = Integer.valueOf(tmpArray[1]);
+            extraCreditTypes[i] = tmpArray[1];
+            int numSubjects = Integer.valueOf(tmpArray[2]);
             tmpList.remove(0);
 
             tmpArray = tmpList.get(0).split(":");
             File subjListFile = new File(tmpArray[1]);
+            ArrayList<String> actualExtraCreditTypeList = new ArrayList<>();
             BufferedReader fileReader = new BufferedReader(new FileReader(subjListFile));
             if (subjListFile.exists()) {
                 fileReader = new BufferedReader(new FileReader(subjListFile));
                 while((line = fileReader.readLine()) != null) {
-                    /*TODO nagy lista feltöltése az extra tárgyakkal*/
-                    /*majd a nagy lista numSemesters + i-edik listájába megy mindig a tárgy*/
+                    actualExtraCreditTypeList.add(line);
+                }
+                if (actualExtraCreditTypeList.size() != numSubjects) {
+                    throw new Exception("File " + tmpArray[1] + " semester file is corrupted!");
+                }
+                for (String wantedSubject : actualExtraCreditTypeList) {
+                    for (Subject s : subjectList) {
+                        if (wantedSubject.equals(s.getSubjectCode())) {
+                            graphContainer.get(numSemesters+i).add(s);
+                        }
+                    }
                 }
             } else {
                 throw new Exception("The " + subjListFile + " file does not exsists! The 'graf.txt' file is corrupted!");
