@@ -1,6 +1,0 @@
-FPGA alapú beágyazott rendszerek
-VEMIVI4144b
-4
-VEMIVIB544t
-DIFF1
-0

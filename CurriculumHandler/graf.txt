@@ -16,8 +16,8 @@
 ->SOURCE:7.felev.txt
 #EXTRA_CREDIT_TYPES_STORED:3
 *:HUM:18
-->SOURCE:grafred_HUM
+->SOURCE:grafred_HUM.txt
 *:DIF1:31
-->SOURCE:grafred_DIF1
+->SOURCE:grafred_DIF1.txt
 *:DIF2:10
-->SOURCE:grafred_DIF2
+->SOURCE:grafred_DIF2.txt

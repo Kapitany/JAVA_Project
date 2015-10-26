@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package handler;
 
 import java.io.BufferedReader;
@@ -11,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,8 +16,9 @@ public class GraphFileHandler {
     private final ArrayList<ArrayList<Subject>> graphContainer;
     private final String graphName;
     private final int numSemesters;
-    private final int[] creditPerSemester;
+    private final int[] creditsPerSemester;
     private final int numExtraCreditTypes;
+    private final String[] extraCreditTypes;
 
     public GraphFileHandler(ArrayList<Subject> subjectList) throws Exception {
         graphContainer = new ArrayList<>();
@@ -47,6 +41,7 @@ public class GraphFileHandler {
             System.err.println("Unexpected IOException occured!");
         }
 
+        @SuppressWarnings("UnusedAssignment")
         String[] tmpArray = null;
         tmpArray = tmpList.get(0).split(":");
         graphName = tmpArray[1];
@@ -56,12 +51,12 @@ public class GraphFileHandler {
         numSemesters = Integer.valueOf(tmpArray[1]);
         tmpList.remove(0);
 
-        creditPerSemester = new int[numSemesters];
+        creditsPerSemester = new int[numSemesters];
         for (int i = 0; i < numSemesters; i++) {
-            graphContainer.add(new ArrayList<Subject>());
+            graphContainer.add(new ArrayList<>());
 
             tmpArray = tmpList.get(0).split(":");
-            creditPerSemester[i] = Integer.valueOf(tmpArray[3]);
+            creditsPerSemester[i] = Integer.valueOf(tmpArray[3]);
             int numberOfSubject = Integer.valueOf(tmpArray[4]);
             tmpList.remove(0);
             tmpArray = tmpList.get(0).split(":");
@@ -77,16 +72,16 @@ public class GraphFileHandler {
                 if (actualSemesterSubjectList.size() != numberOfSubject) {
                     throw new Exception("File " + tmpArray[1] + " semester file is corrupted!");
                 }
-                for (int j = 0; j < actualSemesterSubjectList.size(); j++) {
+                for (String wantedSubject : actualSemesterSubjectList) {
                     boolean isFound = false;
-                    for (Subject actSubject : subjectList) {
-                        if(actualSemesterSubjectList.get(j).equals(actSubject.getSubjectCode())){
-                            graphContainer.get(i).add(actSubject);
+                    for (Subject s : subjectList) {
+                        if (wantedSubject.equals(s.getSubjectCode())) {
+                            graphContainer.get(i).add(s);
                             isFound = true;
                         }
                     }
-                    if(!isFound){
-                        String [] tmp = actualSemesterSubjectList.get(j).split(":");
+                    if (!isFound) {
+                        String[] tmp = wantedSubject.split(":");
                         Subject blankSubject = new Subject(tmp[0], "-", Integer.valueOf(tmp[1]), new String[0], tmp[0], 0);
                         graphContainer.get(i).add(blankSubject);
                     }
@@ -97,13 +92,39 @@ public class GraphFileHandler {
                 System.err.println("Unexpected IOException occured!");
             }
         }
-        
+
         tmpArray = tmpList.get(0).split(":");
         numExtraCreditTypes = Integer.valueOf(tmpArray[1]);
         tmpList.remove(0);
-        
-        //TODO grafredek tárolása
-        
+
+        //eddig csak rendezés, innen új kód
+        //a grafred mappákat listákra cseréltem, mert ha a régi listákból keresünk tárgyakat akkor elég csak a kódokat tudni
+        //egy két ideiglenes változó rettenetesen értelmezhetetlenül volt elnevezve -> javítva
+        extraCreditTypes = new String[numExtraCreditTypes];
+
+        for (int i = 0; i < numExtraCreditTypes; i++) {
+            tmpArray = tmpList.get(0).split(":");
+            extraCreditTypes[i] = tmpArray[0];
+            int numSubjects = Integer.valueOf(tmpArray[1]);
+            tmpList.remove(0);
+
+            tmpArray = tmpList.get(0).split(":");
+            File subjListFile = new File(tmpArray[1]);
+            BufferedReader fileReader = new BufferedReader(new FileReader(subjListFile));
+            if (subjListFile.exists()) {
+                fileReader = new BufferedReader(new FileReader(subjListFile));
+                while((line = fileReader.readLine()) != null) {
+                    /*TODO nagy lista feltöltése az extra tárgyakkal*/
+                    /*majd a nagy lista numSemesters + i-edik listájába megy mindig a tárgy*/
+                }
+            } else {
+                throw new Exception("The " + subjListFile + " file does not exsists! The 'graf.txt' file is corrupted!");
+            }
+            tmpList.remove(0);
+        }
+        if (!tmpList.isEmpty()) {
+            throw new Exception("The 'graf.txt' file is corrupted! Please update your files!");
+        }
     }
 
 }
