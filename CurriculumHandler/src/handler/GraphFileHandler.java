@@ -109,14 +109,15 @@ public class GraphFileHandler {
             tmpArray = tmpList.get(0).split(":");
             File subjListFile = new File(tmpArray[1]);
             ArrayList<String> actualExtraCreditTypeList = new ArrayList<>();
-            BufferedReader fileReader = new BufferedReader(new FileReader(subjListFile));
+            @SuppressWarnings("UnusedAssignment")
+            BufferedReader fileReader = null;
             if (subjListFile.exists()) {
                 fileReader = new BufferedReader(new FileReader(subjListFile));
                 while((line = fileReader.readLine()) != null) {
                     actualExtraCreditTypeList.add(line);
                 }
                 if (actualExtraCreditTypeList.size() != numSubjects) {
-                    throw new Exception("File " + tmpArray[1] + " semester file is corrupted!");
+                    throw new Exception("File " + tmpArray[1] + " file is corrupted!");
                 }
                 for (String wantedSubject : actualExtraCreditTypeList) {
                     for (Subject s : subjectList) {
