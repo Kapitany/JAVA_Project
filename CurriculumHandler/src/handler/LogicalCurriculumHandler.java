@@ -38,6 +38,8 @@ public class LogicalCurriculumHandler {
     private ArrayList<Map<String, Boolean>> isExtraCompleted;
 
     private final String creditOverflowTo;
+    
+    private ArrayList<Subject> completedSubjects;
 
     LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
@@ -174,4 +176,13 @@ public class LogicalCurriculumHandler {
             }
         }
     }
+    
+    public boolean completeSubject(Subject subject){
+        if(!completedSubjects.contains(subject)){
+            completedSubjects.add(subject);
+            return true;
+        }
+        return false;
+    }
+    
 }
