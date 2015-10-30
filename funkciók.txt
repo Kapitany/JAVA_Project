@@ -1,0 +1,67 @@
+﻿-Tárgygráf
+-Saját tárgyak felvétele [szabadon választható tárgyak]
+-Blokkosított százalékos kreditszámláló
+
+
+-Minden teljesített félév eltárolása + tanulmányi átlag és kreditindex számoló
+-Saját fáljrendszeres alap
+
+
+-Órarend tervező
+-TODO funkció [diáknaptár]
+
+
+-Profil mentés és betöltés [több profil lehetősége]
+-Update értesítő naptár alapján
+-Achievmentek
+
+
+-------------------------------------------------------
+Time-plan lofasz:
+1. Saját fáljrendszeres alap (okt 4) (ALL)
+2. Tantervek + tárgyellenőrző segédprogram (okt 4) (A+O) 
+3. Update értesítő (system calendar) alapján (okt 4) (K+P)
+4. Ideiglenes kezelőfelület (okt 11) (Á+P)
+5. Integráció (ALL)
+6. Tárgygráf (okt 18) (A+O)
+7. Saját tárgyak felvétele [szabadon választható tárgyak] (okt 18) (Á+K)
+8. Blokkosított százalékos kreditszámláló (okt 18) (A+P)
+9. integráció (okt 25) (ALL)
+10. Órarend tervező + TODO funkció [diáknaptár] (nov 8) (ALL)
+11. integráció (nov 15) (ALL)
+12. Minden teljesített félév összegzése + tanulmányi átlag és kreditindex számoló (nov 22) (P+O) 
+13. Achievmentek + generáló (nov 22) (Á+A+K)
+14. Profil mentés és betöltés [több profil lehetősége] (nov 29) (ALL)
+15. Végleges kezelőfelület + integráció (dec 13) (ALL)
+
+UML?
+#class?
+#lines?
+
+-------------------------------------------------------
+JZ-nek elküldött verzió:
+1. Saját fájlrendszer elkészítése + függőség ellenőrző program (okt.4) (MINDENKI)
+2. "Tanterv" fájlok elkészítése a grafikus tárgygráfhoz és azelőrehaladás méréséhez  (okt. 4) (Alex+Ottilia)
+3. Update értesítő rendszer naptár alapján (okt. 4) (Lajos+P.Ádám)
+4. Ideiglenes kezelőfelület (okt. 11) (Sz.Ádám+P.Ádám)
+5. Integráció (MINDENKI)
+6. Grafikus tárgygráf (okt. 18) (Alex+Ottilia)
+7. Saját tárgyak felvételének megoldása [szabadon választható tárgyak](okt. 18) (Sz.Ádám+Lajos)
+8. Diagramok elkészítése [hány %-os a teljesítés egy bizonyostárgycsoportra] (okt. 18) (Alex+P.Ádám)
+9. Integráció (okt. 25) (MINDENKI)
+10. Órarend generáló felvett tárgyak alapján + TODO funkció [szerkeszthető diáknaptár] (nov. 8) (MINDENKI)
+11. Integráció (nov. 15) (MINDENKI)
+12. Lezárt félév összegző tanulmányi átlag és kreditindex kalkulátorral (nov. 22) (P.Ádám+Ottilia)
+13. "Achievment rendszer" + achievment generáló segédprogram (nov. 22) (Sz.Ádám+Alex+Lajos)
+14. Profil mentés és betöltés [több profil lehetősége] (nov. 29) (MINDENKI)
+15. Végleges kezelőfelület + Integráció (dec. 13) (MINDENKI)
+*16. JZ kedvéért ha lesz rá idő:
+Fájlrendszer javítása olyan módon, hogy minden fájlban minden sor elé odekerül egy 4 karakteres kód, pl #NAM, #CRE, #REQ.
+A kiterjesztéseket .txt-ről .subj-ra cseréljük. A program indulásakor a tanterv kiválasztása után de még a tényleges felület előtt
+lefut egy tanterv ellenőrző segédprogram, ami egy a tantervhez tartozó .ini fájl betallózását kéri.
+Ez a fájl a tantervvel együtt érkezik és a szerkezeti leírást tartalmazza, ami az elleőrzéshez kell.
+Ez végigmegy mindenen és csekkolja, hogy nincs-e valahol belenyúlva. [Ehhez kellenek a kiegészítések a subjectekbe].
+Ha valahol korrupt a rendszer akkor egy saját cutom exceptiont dob és nem engedi tovább a felhasználót.
+[FOLYAMATOS TESZTELÉS]
+
+Körülbelül 25 osztályra és 10000 sorra számítunk, de ez inkább alsó becslés.
