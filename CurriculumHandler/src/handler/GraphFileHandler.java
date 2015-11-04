@@ -136,4 +136,8 @@ public class GraphFileHandler {
         }
     }
 
+    public ArrayList<ArrayList<Subject>> getGraphContainer() {
+        return graphContainer;
+    }
+    
 }

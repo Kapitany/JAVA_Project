@@ -184,5 +184,9 @@ public class LogicalCurriculumHandler {
         }
         return false;
     }
+
+    public String getCurriculumName() {
+        return curriculumName;
+    }
     
 }

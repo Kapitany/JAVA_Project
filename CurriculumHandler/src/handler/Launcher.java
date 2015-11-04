@@ -1,5 +1,6 @@
 package handler;
 
+import com.sun.scenario.effect.impl.prism.PrMergePeer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
  * @author tomega
  */
 //A kikommentezett sorok egyenként is sok sor kimenettel rendelkeznek. Szemléltető jellegűek, a tesztelést szolgálják/ták.
-public class MainClass extends Application {
+public class Launcher extends Application {
 
     @SuppressWarnings("CallToPrintStackTrace")
     public static void main(String[] args) {
@@ -22,20 +23,30 @@ public class MainClass extends Application {
     @SuppressWarnings("CallToPrintStackTrace")
     public void start(Stage primaryStage) throws Exception {
         try {
+            //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
+            System.out.println("in launcher:");
             LogicalCurriculumHandler handler = new LogicalCurriculumHandler();
-            handler.list();
+//            handler.list();
             SubjectListLoader loader = new SubjectListLoader(handler.getSubjPath());
 //            loader.listSubjects();
 //            DependenceViewer viewer = new DependenceViewer(loader.getSubjectList());
             GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList());
+            System.out.println("Initialization in launcher completed without errors!");
+
+            /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/
+            
+            Parent root = FXMLLoader.load(getClass().getResource("graphView.fxml"));
+            //itt majd a főpanelnek kell lennie, most tesztelés miatt egy gráfmegjelenítéssel próbálkozom csak
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle(handler.getCurriculumName());
+            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
+            primaryStage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.err.println("Initialisation aborted!");
         }
-        Parent root = FXMLLoader.load(getClass().getResource("graphView.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
 }
