@@ -41,7 +41,7 @@ public class LogicalCurriculumHandler {
     
     private ArrayList<Subject> completedSubjects;
 
-    LogicalCurriculumHandler() throws Exception {
+    public LogicalCurriculumHandler() throws Exception {
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
         logCurrFile = new File("logikai.txt");

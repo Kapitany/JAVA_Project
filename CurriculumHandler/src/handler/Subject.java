@@ -6,7 +6,7 @@ import java.util.Arrays;
  *
  * @author Tomega
  */
-class Subject {
+public class Subject {
 
     private final String subjectName;
     private final String subjectCode;
