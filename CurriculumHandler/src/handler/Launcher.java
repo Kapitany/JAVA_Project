@@ -35,12 +35,12 @@ public class Launcher extends Application {
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/
             
             Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
-            //itt majd a főpanelnek kell lennie, most tesztelés miatt egy gráfmegjelenítéssel próbálkozom csak
             Scene scene = new Scene(root);
+            
             primaryStage.setScene(scene);
             primaryStage.setTitle(handler.getCurriculumName());
-        //    primaryStage.setMaximized(true);
-        //    primaryStage.setResizable(false);
+            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
             ex.printStackTrace();

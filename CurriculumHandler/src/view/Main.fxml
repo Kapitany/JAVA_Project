@@ -10,14 +10,14 @@
    <children>
       <TabPane layoutX="131.0" layoutY="82.0" prefHeight="655.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab fx:id="tabStart" closable="false" text="Start">
+          <Tab fx:id="tabStart" closable="false" text="Graph">
                <content>
-                  <fx:include source="/view/Start.fxml" />
+                  <fx:include source="Graph.fxml" />
                </content>
           </Tab>
           <Tab fx:id="tabPref" closable="false" text="Preferences">
                <content>
-                  <fx:include source="/view/Preferences.fxml" />
+                  <fx:include source="Preferences.fxml" />
                </content>
           </Tab>
         </tabs>

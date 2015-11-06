@@ -1,22 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import handler.GraphFileHandler;
 import handler.LogicalCurriculumHandler;
 import handler.Subject;
 import handler.SubjectListLoader;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -32,7 +23,7 @@ import javafx.scene.text.TextAlignment;
  *
  * @author adamp
  */
-public class StartController implements Initializable {
+public class GraphController implements Initializable {
 
     @FXML
     private VBox vBoxSemester1;
@@ -74,7 +65,7 @@ public class StartController implements Initializable {
             GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList());
 
             ArrayList<ArrayList<Subject>> subjectsPerSemester = graphHandler.getGraphContainer();
-
+            
             for (int semester = 0; semester < 7; semester++) {
                 for (int subj = 0; subj < subjectsPerSemester.get(semester).size(); subj++) {
                    
@@ -83,11 +74,13 @@ public class StartController implements Initializable {
                     lblSubjetName.setTextAlignment(TextAlignment.CENTER);
                     lblSubjetName.setAlignment(Pos.CENTER);
                     vBoxSemesters.get(semester).getChildren().add(lblSubjetName);
+                    vBoxSemesters.get(semester).setAlignment(Pos.TOP_CENTER);
+                    
                 }
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(StartController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GraphController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
