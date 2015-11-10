@@ -18,3 +18,6 @@ Leírás: Alternatív GUI generátorok FX-hez [ismeretlenek]
 
 URL: https://docs.oracle.com/javase/8/docs/api/java/beans/PropertyChangeListener.html
 Leírás: PropertyChangeListener, a globális számlálók megváltozásának figyeléséhez, amik majd Propery objektumok lesznek, ha minden igaz
+
+URL: http://www.apache.org/dyn/closer.lua/logging/log4j/2.4.1/apache-log4j-2.4.1-bin.zip
+Leírás: Apache Log4J 2
