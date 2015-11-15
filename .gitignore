@@ -1,5 +1,3 @@
-/CurriculumHandler/dist/
-/CurriculumHandler/nbproject/private/
-/CurriculumHandler/build/
-/MilestoneTracker/build/
-/MilestoneTracker/nbproject/private/
+/MilestoneTracker/nbproject/private/*
+/MilestoneTracker/build/*
+/MilestoneTracker/dist/*
