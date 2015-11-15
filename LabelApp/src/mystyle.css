@@ -1,0 +1,36 @@
+.label{ //it globál állít az összes labelre
+    -fx-font-size: 14pt;
+    -fx-border-color:#000000;
+    -fx-border-width: 2;
+    -fx-background-color:#07ff00;
+}
+
+#vbox{
+    -fx-font-family: "Papyrus";
+}
+#vbox1{
+    -fx-font-family: "Comic Sans MS";
+}
+#vbox2{
+    -fx-font-family: "Brush Script MT";
+    
+}
+/*#label{ // #azonosítóval rendelhetsz hozzá dolgokat (adott labelre)
+    -fx-font-family: "Rockwell Extra Bold";
+    -fx-background-color: #ff0026;
+    -fx-border-color: #ffb900;
+    -fx-border-width: 10;
+}
+#label1{
+    -fx-background-color: #0700ff;
+    -fx-text-fill: #fff700;
+    -fx-font-size: 15pt; //de label sajátjában is felülírhatod a globált
+    -fx-font-family: "Comic Sans MS";
+    -fx-border-color: #7cff02;
+    -fx-border-width: 10;
+}
+#label2{
+    -fx-background-color: #00fff7;
+    -fx-border-color: #ff9a00;
+    -fx-border-width: 5;
+}*/
