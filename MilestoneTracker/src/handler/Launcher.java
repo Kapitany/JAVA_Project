@@ -39,8 +39,8 @@ public class Launcher extends Application {
             
             primaryStage.setScene(scene);
             primaryStage.setTitle(handler.getCurriculumName());
-            primaryStage.setMaximized(true);
-            primaryStage.setResizable(false);
+//            primaryStage.setMaximized(true);
+//            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -25,8 +25,7 @@ import java.util.logging.Logger;
  *
  * @author Kapitany & adamp
  */
-
-public class Updater{
+public class Updater {
 
     private final boolean useProxy;
     private final String proxyAddress;
@@ -36,7 +35,7 @@ public class Updater{
     private final String tempDirectory = "tmp";
     private final String zipFileDestination = tempDirectory + "\\update.zip";
     private final String versionFileDestination = tempDirectory + "\\update.ver";
-    
+
     private String updateDescription = "";
 
     private String zipFileAddress;
@@ -69,7 +68,7 @@ public class Updater{
             }
             reader.close();
             updateDescription = sb.toString();
-            
+
             if (!(currentVerison.equalsIgnoreCase(updateVersion))) {
                 return false;
             }
@@ -88,23 +87,23 @@ public class Updater{
         return true;
     }
 
-    private String download(String filePath, String url, boolean isProxy){
-        
+    private String download(String filePath, String url, boolean isProxy) {
+
         new File(tempDirectory).mkdir();
-        
+
         try {
             URL link = new URL(url);
             InputStream in;
-            
+
             if (isProxy) {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyAddress, proxyPort));
                 in = new BufferedInputStream(link.openConnection(proxy).getInputStream());
             } else {
                 in = new BufferedInputStream(link.openStream());
             }
-            
+
             ByteArrayOutputStream out = new ByteArrayOutputStream();
-            
+
             byte[] buf = new byte[1024];
             int n = 0;
             while ((n = in.read(buf)) != -1) {
@@ -113,17 +112,16 @@ public class Updater{
             out.close();
             in.close();
             byte[] response = out.toByteArray();
-            
-            
+
             FileOutputStream fos = new FileOutputStream(filePath);
             fos.write(response);
             fos.close();
-            
-            System.out.println(filePath +" downloaded");
-            
+
+            System.out.println(filePath + " downloaded");
+
             return filePath;
         } catch (MalformedURLException ex) {
-            System.out.println("Failed to connect to '" + url +"'");
+            System.out.println("Failed to connect to '" + url + "'");
             Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,9 +129,16 @@ public class Updater{
         return null;
     }
 
-    public void update() {        
+    public void update() {
         String filePath = download(zipFileDestination, zipFileAddress, useProxy);
         updateDestination += updateVersion;
+        if (new File(updateDestination).isDirectory()) {
+            try {
+                delete(new File(updateDestination));
+            } catch (IOException ex) {
+                Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         unzipper(filePath, updateDestination);
         currentVerison = updateVersion;
     }

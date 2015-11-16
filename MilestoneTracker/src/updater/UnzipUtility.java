@@ -35,10 +35,11 @@ public class UnzipUtility {
     public void unzip(String zipFilePath, String destDirectory) throws IOException {
 
         ArchiveInputStream ais = null;
+        InputStream is = null;
         try {
             new File(destDirectory).mkdirs();
             File inputFile = new File(zipFilePath);
-            InputStream is = new FileInputStream(inputFile);
+            is = new FileInputStream(inputFile);
             ais = new ArchiveStreamFactory().createArchiveInputStream("zip", is);
             ZipEntry entry = null;
             while ((entry = (ZipArchiveEntry) ais.getNextEntry()) != null) {
@@ -75,6 +76,7 @@ public class UnzipUtility {
         } finally {
             try {
                 ais.close();
+                is.close();
             } catch (IOException ex) {
                 Logger.getLogger(UnzipUtility.class.getName()).log(Level.SEVERE, null, ex);
             }
