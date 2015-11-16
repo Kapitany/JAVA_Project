@@ -15,6 +15,9 @@
     -fx-font-family: "Brush Script MT";
     
 }
+#vbox3{
+    -fx-font-family: "Juice ITC";
+}
 /*#label{ // #azonosítóval rendelhetsz hozzá dolgokat (adott labelre)
     -fx-font-family: "Rockwell Extra Bold";
     -fx-background-color: #ff0026;

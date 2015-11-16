@@ -7,12 +7,22 @@ package labelapp;
 
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.scene.effect.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -98,11 +108,16 @@ public class LabelApp extends Application {
         });
         Label label8=new Label();
         label8.setText("label8-jó hosszú szöveg");
+        Label label9=new Label();
+        label9.setText("label9-☐ Not REKT");
+        Label label10=new Label();
+        label10.setText("label10-☑ REKT");
+        Label label11=new Label();
+        label11.setText("label11- ☑ Tyrannosaurus REKT");
         
         
         
-        
-        HBox hbox=new HBox(50);//horizontális box amibe majd vbox-ot raksz(többet, ez megy ki root helyett)
+        HBox hbox=new HBox(10);//horizontális box amibe majd vbox-ot raksz(többet, ez megy ki root helyett)
         
         VBox vbox= new VBox();// layout menendzselés vbox-al
         vbox.setId("vbox");
@@ -120,7 +135,13 @@ public class LabelApp extends Application {
         //ha ugyanazt az effektet raktam volna erre, mint az itteni label-ekre
         //akkor szörnyű lett volna (ezért vanmindegyiken külön), de így szebb
         
-        hbox.getChildren().addAll(vbox,vbox1,vbox2);
+        VBox vbox3=new VBox();
+        vbox3.setId("vbox3");
+        vbox3.getChildren().addAll(label9,label10,label11);
+        
+        hbox.getChildren().addAll(vbox,vbox1,vbox2,vbox3);
+        
+        //a dobozok mérete sokszor függ a betűtípustól is, nem csak a mérettől
         
         Scene scene = new Scene(hbox, 750, 500);
         scene.getStylesheets().add("mystyle.css"); //itt adod meg a css file nevét
