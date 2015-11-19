@@ -1,1 +1,1 @@
-Teljes fájlrendszer + függőségtesztelő segédprogram [netbeans projekt]
+﻿Naptár és ToDo lista tesztelő segédprogram [netbeans projekt]

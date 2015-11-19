@@ -1,6 +1,0 @@
-Adatstruktúrák és algoritmusok
-VEMISA3144a
-4
-(VETKMA1243d);VEMKSA2144b;VEMIMAB146m
-KOT
-0
