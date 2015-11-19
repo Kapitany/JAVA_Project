@@ -1,0 +1,20 @@
+#hbox{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 4;
+}
+#Label{
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-background-color: #ff6c00;
+}
+
+#Label2{
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-background-color: #ff6c00;
+}
+
+#image{
+    -fx-background-color: #000000;
+}
