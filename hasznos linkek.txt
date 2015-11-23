@@ -21,3 +21,6 @@ Leírás: PropertyChangeListener, a globális számlálók megváltozásának fi
 
 URL: http://www.apache.org/dyn/closer.lua/logging/log4j/2.4.1/apache-log4j-2.4.1-bin.zip
 Leírás: Apache Log4J 2
+
+URL: http://www.jdom.org/downloads/index.html
+Leírás: JDOM letöltés XML feldolgozáshoz
