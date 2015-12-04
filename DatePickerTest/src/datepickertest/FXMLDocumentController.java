@@ -7,11 +7,15 @@ package datepickertest;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.MonthDay;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -29,16 +33,38 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     @FXML
     DatePicker datepicker;
-    ComboBox<String> combobox;
+    @FXML
+    ChoiceBox<String> choiceBox;
      
     public FXMLDocumentController(){
         
     }
     
-    private void handleButtonAction(ActionEvent event) {
-        //naptári bejegyzések tárolóból kiszedni az aktuális napra vonatkozó adatokat
-        
+    //új esemény hozzáadása (combobox alapján történő esemény (évi, havi, heti, napi))
+    public void setIntv(DateCell dc, LocalDate item ){     
+        String intv = choiceBox.getValue();
+        if(intv.equals("Heti")){
+            /*if(MonthDay.from(item).equals(MonthDay.of(Month.MARCH, dayOfMonth))){
+                
+            }*/
+        }else if(intv.equals("Napi")){
+            
+        }else if(intv.equals("Havi")){
+            for (int i = 0; i < 10; i++) {
+                if(MonthDay.from(item).equals(MonthDay.of(i, 12))){
+                    dc.setTooltip(new Tooltip("Happy Birthday!"));
+                    dc.setStyle("-fx-background-color: #ff4444;");
+                }
+            }
+        }else if(intv.equals("Évi")){
+            if(MonthDay.from(item).equals(MonthDay.of(12, 25))){
+                dc.setTooltip(new Tooltip("Happy Birthday!"));
+                    dc.setStyle("-fx-background-color: #ff4444;");
+            }
+        }
     }
+    
+    
     
     final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
         public DateCell call(final DatePicker datePicker) {
@@ -46,36 +72,43 @@ public class FXMLDocumentController implements Initializable {
                 @Override public void updateItem(LocalDate item, boolean empty) {
                     super.updateItem(item, empty);
 
-                    if (MonthDay.from(item).equals(MonthDay.of(9, 25))) {
+                    setIntv(this, item);
+                    /*if (MonthDay.from(item).equals(MonthDay.of(12, 25))) {
                         setTooltip(new Tooltip("Happy Birthday!"));
                         setStyle("-fx-background-color: #ff4444;");
                     }
                     if (item.equals(LocalDate.now().plusDays(1))) {
                         // Tomorrow is too soon.
                         setDisable(true);
-                    }
+                    }*/
                 }
             };
         }
     };
     
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("initialize...");
         
-        //combobox.getItems().addAll("Day", "Week");
+        ObservableList<String> dayList = FXCollections.observableArrayList("Napi", "Heti", "Havi", "Évi");
         
+        choiceBox.setItems(dayList);
         
         datepicker.setDayCellFactory(dayCellFactory);
         
         
+        
         datepicker.setValue(LocalDate.of(2015, 12, 8));
         datepicker.setValue(LocalDate.of(2015, 12, 10));
-        datepicker.setTooltip(new Tooltip("Tooltip"));
+        //datepicker.setTooltip(new Tooltip("Tooltip"));
 
         datepicker.setShowWeekNumbers(true);
         //datepicker.show();
         datepicker.requestFocus();
     }    
     
+    
+
 }
