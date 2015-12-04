@@ -14,7 +14,7 @@ import updater.Updater;
  *
  * @author adamp
  */
-public class PreferencesController implements Initializable {
+public class UpdateController implements Initializable {
 
     @FXML
     Button btnUpdate;

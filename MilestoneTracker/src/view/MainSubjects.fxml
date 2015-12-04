@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GraphController">
+   <children>
+      <SplitPane dividerPositions="0.65" layoutX="26.0" layoutY="26.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="lblDiagram" alignment="CENTER" text="Diagramok" AnchorPane.topAnchor="14.0" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -139,5 +139,26 @@ public class GraphFileHandler {
     public ArrayList<ArrayList<Subject>> getGraphContainer() {
         return graphContainer;
     }
+
+    public String getGraphName() {
+        return graphName;
+    }
+
+    public int getNumSemesters() {
+        return numSemesters;
+    }
+
+    public int[] getCreditsPerSemester() {
+        return creditsPerSemester;
+    }
+
+    public int getNumExtraCreditTypes() {
+        return numExtraCreditTypes;
+    }
+
+    public String[] getExtraCreditTypes() {
+        return extraCreditTypes;
+    }
+    
     
 }
