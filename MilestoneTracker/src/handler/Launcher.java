@@ -18,6 +18,7 @@ public class Launcher extends Application {
         launch(args);
     }
     
+    private static GraphFileHandler graphHandler = null;
     private static LogicalCurriculumHandler handler = null;
     private static SubjectListLoader loader = null;
 
@@ -32,7 +33,6 @@ public class Launcher extends Application {
     public static GraphFileHandler getGraphHandler() {
         return graphHandler;
     }
-    private static GraphFileHandler graphHandler = null;
 
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
@@ -42,7 +42,7 @@ public class Launcher extends Application {
             System.out.println("in launcher:");
             if (handler == null) {
                 handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_0"); //TODO itt majd lehet a tallózást beállítani más projektekre
-            }//            handler.list();
+            }//handler.list();
             if (loader == null) {
                 loader = new SubjectListLoader(handler.getSubjPath());
             }

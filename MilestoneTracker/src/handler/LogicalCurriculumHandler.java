@@ -16,8 +16,9 @@ import java.util.Map;
  */
 public class LogicalCurriculumHandler {
 
-    private String currPath;
+    private final String currPath;
     private final String curriculumVersion;
+    
     private final String curriculumName;
     private final String pathSubjects;
 
@@ -203,6 +204,10 @@ public class LogicalCurriculumHandler {
 
     public String getCurrPath() {
         return currPath;
+    }
+    
+    public String getCurriculumVersion() {
+        return curriculumVersion;
     }
     
 }
