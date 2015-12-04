@@ -14,18 +14,20 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.concurrent.Task;
 
 /**
  *
  * @author Kapitany & adamp
  */
-public class Updater {
+public class Updater extends Task {
 
     private final boolean useProxy;
     private final String proxyAddress;
@@ -44,6 +46,8 @@ public class Updater {
     private String currentVerison;
     private String updateVersion;
 
+    private String message = "";
+    
     public Updater(boolean proxy, String proxyAddress, int proxyPort, String currentVersion) {
         this.useProxy = proxy;
         this.proxyAddress = proxyAddress;
@@ -51,7 +55,7 @@ public class Updater {
         this.currentVerison = currentVersion;
     }
 
-    public boolean isUpToDate() {
+    private boolean isUpToDate() {
         BufferedReader reader = null;
         try {
             String filePath = download(versionFileDestination, versionAddress, useProxy);
@@ -68,6 +72,8 @@ public class Updater {
             }
             reader.close();
             updateDescription = sb.toString();
+            message += ("Current version: " + currentVerison + "\nUpdate version: " + updateVersion + "\n" + updateDescription + "\n");
+            updateMessage(message);
 
             if (!(currentVerison.equalsIgnoreCase(updateVersion))) {
                 return false;
@@ -91,8 +97,20 @@ public class Updater {
 
         new File(tempDirectory).mkdir();
 
+        HttpURLConnection conn = null;
+
         try {
+
             URL link = new URL(url);
+
+            conn = (HttpURLConnection) link.openConnection();
+            conn.setRequestMethod("HEAD");
+            int size = conn.getContentLength();
+            conn.disconnect();
+            updateProgress(0, size);
+            message += ("Connecting to: " + url +"\n");
+            updateMessage(message);
+
             InputStream in;
 
             if (isProxy) {
@@ -101,14 +119,33 @@ public class Updater {
             } else {
                 in = new BufferedInputStream(link.openStream());
             }
-
+            message += ("Successfully connected!"+ "\n");
+            updateMessage(message);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
 
             byte[] buf = new byte[1024];
             int n = 0;
-            while ((n = in.read(buf)) != -1) {
-                out.write(buf, 0, n);
+            message += ("Downloading..."+ "\n");
+            updateMessage(message);
+            int bytesRead = 0;
+            int bytesCount = 0;
+            int filesize = 0;
+
+            while ((bytesRead = in.read(buf, 0, 1024)) != -1 && !isCancelled()) {
+                //        System.out.println(((double)bytesCount/(double)filesize)*100);
+                out.write(buf, 0, bytesRead);
+                updateProgress(bytesCount, filesize);
+                bytesCount += bytesRead;
+                out.flush();
             }
+            updateProgress(filesize,filesize);
+            message += ("Download completed!"+ "\n");
+            updateMessage(message);
+//            
+//            while ((n = in.read(buf)) != -1) {
+//                out.write(buf, 0, n);
+//                updateProgress(n, n);
+//            }
             out.close();
             in.close();
             byte[] response = out.toByteArray();
@@ -121,32 +158,51 @@ public class Updater {
 
             return filePath;
         } catch (MalformedURLException ex) {
-            System.out.println("Failed to connect to '" + url + "'");
-            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+            message += ("Malformed URL!"+"\n");
+            updateMessage(message);
         } catch (IOException ex) {
-            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+            message += ("IOException"+"\n");
+            updateMessage(message);
+        } catch (Exception ex) {
+            message += ("Exception (timeout?)"+"\n");
+            updateMessage(message);
         }
         return null;
     }
 
-    public void update() {
-        String filePath = download(zipFileDestination, zipFileAddress, useProxy);
-        updateDestination += updateVersion;
-        if (new File(updateDestination).isDirectory()) {
-            try {
-                delete(new File(updateDestination));
-            } catch (IOException ex) {
-                Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+    private void update() {
+        if (!isUpToDate()) {
+            message += ("Starting download new files (" + updateVersion + ")..."+"\n");
+            updateMessage(message);
+            String filePath = download(zipFileDestination, zipFileAddress, useProxy);
+           
+            updateMessage(message);
+            updateDestination += updateVersion;
+            if (new File(updateDestination).isDirectory()) {
+                try {
+                    message += ("Starting delete old direcotry (" + updateDestination + ")..."+ "\n");
+                    updateMessage(message);
+                    delete(new File(updateDestination));
+                    message += ("Deleted!"+"\n");
+                    updateMessage(message);
+                } catch (IOException ex) {
+                    Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            unzipper(filePath, updateDestination);
+            currentVerison = updateVersion;
+        } else {
+            message += ("Your curriculum is up to date"+"\n");
+            updateMessage(message);
         }
-        unzipper(filePath, updateDestination);
-        currentVerison = updateVersion;
     }
 
     private void unzipper(String source, String dest) {
         try {
             UnzipUtility zipFile = new UnzipUtility();
             zipFile.unzip(source, dest);
+            message += ("File '" + source + "' unzipped to '" + dest + "'"+"\n");
+            updateMessage(message);
             System.out.println("File '" + source + "' unzipped to '" + dest + "'");
         } catch (IOException ex) {
             Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,11 +220,21 @@ public class Updater {
             for (File c : f.listFiles()) {
                 delete(c);
             }
+            message += (f.getName() + " deleted!"+"\n");
+            updateMessage(message);
             System.out.println(f.getName() + " is deleted!");
         }
         if (!f.delete()) {
             throw new FileNotFoundException("Failed to delete file: " + f);
         }
+    }
+
+    @Override
+    protected Object call() throws Exception {
+
+        update();
+
+        return null;
     }
 
 }
