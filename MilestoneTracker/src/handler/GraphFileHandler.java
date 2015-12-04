@@ -20,10 +20,10 @@ public class GraphFileHandler {
     private final int numExtraCreditTypes;
     private final String[] extraCreditTypes;
 
-    public GraphFileHandler(ArrayList<Subject> subjectList) throws Exception {
+    public GraphFileHandler(ArrayList<Subject> subjectList, String currPath) throws Exception {
         graphContainer = new ArrayList<>();
 
-        File file = new File("graf.txt");
+        File file = new File(currPath + "//graf.txt");
 
         BufferedReader reader;
         String line;
@@ -62,7 +62,7 @@ public class GraphFileHandler {
             tmpArray = tmpList.get(0).split(":");
             tmpList.remove(0);
 
-            File actualSemester = new File(tmpArray[1]);
+            File actualSemester = new File(currPath + "//" + tmpArray[1]);
             ArrayList<String> actualSemesterSubjectList = new ArrayList<>();
             try {
                 BufferedReader semesterReader = new BufferedReader(new FileReader(actualSemester));
@@ -107,7 +107,7 @@ public class GraphFileHandler {
             tmpList.remove(0);
 
             tmpArray = tmpList.get(0).split(":");
-            File subjListFile = new File(tmpArray[1]);
+            File subjListFile = new File(currPath + "//" + tmpArray[1]);
             ArrayList<String> actualExtraCreditTypeList = new ArrayList<>();
             @SuppressWarnings("UnusedAssignment")
             BufferedReader fileReader = null;

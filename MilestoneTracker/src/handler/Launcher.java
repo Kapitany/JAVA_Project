@@ -24,12 +24,12 @@ public class Launcher extends Application {
         try {
             //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
             System.out.println("in launcher:");
-            LogicalCurriculumHandler handler = new LogicalCurriculumHandler();
+            LogicalCurriculumHandler handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_0"); //TODO itt majd lehet a tallózást beállítani más projektekre
 //            handler.list();
             SubjectListLoader loader = new SubjectListLoader(handler.getSubjPath());
 //            loader.listSubjects();
 //            DependenceViewer viewer = new DependenceViewer(loader.getSubjectList());
-            GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList());
+            GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList(), handler.getCurrPath());
             System.out.println("Initialization in launcher completed without errors!");
 
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/

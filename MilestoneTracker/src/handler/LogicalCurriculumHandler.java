@@ -16,7 +16,8 @@ import java.util.Map;
  */
 public class LogicalCurriculumHandler {
 
-    private final File logCurrFile;
+    private String currPath;
+    private final String curriculumVersion;
     private final String curriculumName;
     private final String pathSubjects;
 
@@ -41,10 +42,11 @@ public class LogicalCurriculumHandler {
     
     private ArrayList<Subject> completedSubjects;
 
-    public LogicalCurriculumHandler() throws Exception {
+    public LogicalCurriculumHandler(String currPath) throws Exception {
+        this.currPath = currPath;
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
-        logCurrFile = new File("logikai.txt");
+        File logCurrFile = new File(currPath + "//logikai.txt");
         numCompletedGlobalReqs = 0;
         creditsReceived = 0;
         try {
@@ -59,12 +61,17 @@ public class LogicalCurriculumHandler {
         } catch (IOException ex) {
             System.out.println("IOException has occured, please check the input file and rerun the program!");
         }
+        
+        tmpArray = tmpList.get(0).split(":");
+        curriculumVersion = tmpArray[1];
+        tmpList.remove(0);
+        
         tmpArray = tmpList.get(0).split(":");
         curriculumName = tmpArray[1];
         tmpList.remove(0);
 
         tmpArray = tmpList.get(0).split(":");
-        pathSubjects = tmpArray[1];
+        pathSubjects = currPath + "//" + tmpArray[1];
         tmpList.remove(0);
 
         tmpArray = tmpList.get(0).split(":");
@@ -125,6 +132,7 @@ public class LogicalCurriculumHandler {
         System.out.println("LISTING DATA:");
         System.out.println("******************************************");
         System.out.println("Name: " + curriculumName);
+        System.out.println("Version: "+ curriculumVersion);
         System.out.println("Source folder for the subjects: " + pathSubjects + "/");
         System.out.println("Number of global requirements to 100% completion: " + numGlobalReqs);
         System.out.println("Number of credits to receive: " + creditsToReceive);
@@ -187,6 +195,10 @@ public class LogicalCurriculumHandler {
 
     public String getCurriculumName() {
         return curriculumName;
+    }
+
+    public String getCurrPath() {
+        return currPath;
     }
     
 }
