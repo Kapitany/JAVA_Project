@@ -160,6 +160,10 @@ public class LogicalCurriculumHandler {
         creditsReceived += creditValue;
     }
 
+    public int getCreditsReceived() {
+        return creditsReceived;
+    }
+
     public void addSpecificCredit(String creditType, int creditValue) {
         receiveCredits(creditValue);
         for (int i = 0; i < numberOfCreditTypes; i++) {

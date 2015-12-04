@@ -17,6 +17,22 @@ public class Launcher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
+    private static LogicalCurriculumHandler handler = null;
+    private static SubjectListLoader loader = null;
+
+    public static LogicalCurriculumHandler getHandler() {
+        return handler;
+    }
+
+    public static SubjectListLoader getLoader() {
+        return loader;
+    }
+
+    public static GraphFileHandler getGraphHandler() {
+        return graphHandler;
+    }
+    private static GraphFileHandler graphHandler = null;
 
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
@@ -24,19 +40,23 @@ public class Launcher extends Application {
         try {
             //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
             System.out.println("in launcher:");
-            LogicalCurriculumHandler handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_0"); //TODO itt majd lehet a tallózást beállítani más projektekre
-//            handler.list();
-            SubjectListLoader loader = new SubjectListLoader(handler.getSubjPath());
+            if (handler == null) {
+                handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_0"); //TODO itt majd lehet a tallózást beállítani más projektekre
+            }//            handler.list();
+            if (loader == null) {
+                loader = new SubjectListLoader(handler.getSubjPath());
+            }
 //            loader.listSubjects();
 //            DependenceViewer viewer = new DependenceViewer(loader.getSubjectList());
-            GraphFileHandler graphHandler = new GraphFileHandler(loader.getSubjectList(), handler.getCurrPath());
+            if (graphHandler == null) {
+                graphHandler = new GraphFileHandler(loader.getSubjectList(), handler.getCurrPath());
+            }
             System.out.println("Initialization in launcher completed without errors!");
 
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/
-            
             Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
             Scene scene = new Scene(root);
-            
+
             primaryStage.setScene(scene);
             primaryStage.setTitle(handler.getCurriculumName());
 //            primaryStage.setMaximized(true);
