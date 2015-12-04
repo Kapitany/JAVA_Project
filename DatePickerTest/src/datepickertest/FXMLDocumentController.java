@@ -20,8 +20,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.util.Callback;
+//import jfxtras.scene.control.LocalTimePicker;
 
 /**
  *
@@ -33,9 +35,16 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     @FXML
     DatePicker datepicker;
+    DatePicker datePicker1;
     @FXML
     ChoiceBox<String> choiceBox;
-     
+    
+    @FXML
+    TextField eventNameTextField;
+    
+
+    //
+    //LocalTimePicker localTimePicker;
     public FXMLDocumentController(){
         
     }
@@ -43,24 +52,31 @@ public class FXMLDocumentController implements Initializable {
     //új esemény hozzáadása (combobox alapján történő esemény (évi, havi, heti, napi))
     public void setIntv(DateCell dc, LocalDate item ){     
         String intv = choiceBox.getValue();
-        if(intv.equals("Heti")){
+        if(intv.equals("Dayly")){
             /*if(MonthDay.from(item).equals(MonthDay.of(Month.MARCH, dayOfMonth))){
                 
             }*/
-        }else if(intv.equals("Napi")){
-            
-        }else if(intv.equals("Havi")){
-            for (int i = 0; i < 10; i++) {
-                if(MonthDay.from(item).equals(MonthDay.of(i, 12))){
-                    dc.setTooltip(new Tooltip("Happy Birthday!"));
+        }else if(intv.equals("Weekly")){
+            for (int i = 0; i < 12; i++) {
+                //if(MonthDay.from(item).equals(MonthDay.of(i, 12))){
+                    dc.setTooltip(new Tooltip(i+"Happy Birthday!"));
                     dc.setStyle("-fx-background-color: #ff4444;");
-                }
+                //}
             }
-        }else if(intv.equals("Évi")){
+        }else if(intv.equals("Yearly")){
             if(MonthDay.from(item).equals(MonthDay.of(12, 25))){
                 dc.setTooltip(new Tooltip("Happy Birthday!"));
-                    dc.setStyle("-fx-background-color: #ff4444;");
+                dc.setStyle("-fx-background-color: #ff4444;");
             }
+        }else if(intv.equals("None")){
+            /*LocalDate date = datePicker1.getValue();
+            if(MonthDay.from(item).equals(MonthDay.of(date.getMonthValue(), date.getDayOfMonth()))){
+                if(!eventNameTextField.getPromptText().equals("")){
+                    dc.setTooltip(new Tooltip(eventNameTextField.getPromptText()));
+                    dc.setStyle("-fx-background-color: #4444ff;");
+            
+                }
+            }*/
         }
     }
     
@@ -86,16 +102,22 @@ public class FXMLDocumentController implements Initializable {
         }
     };
     
-    
+    public void loadEvents(){
+        
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("initialize...");
         
-        ObservableList<String> dayList = FXCollections.observableArrayList("Napi", "Heti", "Havi", "Évi");
+        loadEvents();
+        
+        //localTimePicker = new LocalTimePicker();
+        
+        ObservableList<String> dayList = FXCollections.observableArrayList("None", "Dayly", "Weekly", "Yearly");
         
         choiceBox.setItems(dayList);
-        
+        choiceBox.setValue("None");
         datepicker.setDayCellFactory(dayCellFactory);
         
         

@@ -1,3 +1,5 @@
+package datepickertest;
+
 
 import java.time.LocalDate;
 
@@ -12,12 +14,12 @@ import java.time.LocalDate;
  * @author Otti
  */
 public class CalendarEvent {
+    String id;
     String eventName;
     String description;
     LocalDate startDate;
     LocalDate endDate;
     String type;
-    
     
     public String getEventName() {
         return eventName;
@@ -58,6 +60,17 @@ public class CalendarEvent {
     public void setInterval(String interval) {
         this.type = interval;
     }
+
+    public CalendarEvent(String eventName, String description, LocalDate startDate, LocalDate endDate, String type) {
+        this.eventName = eventName;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.type = type;
+        
+        
+    }
+    
     
     
 }
