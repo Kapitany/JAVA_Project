@@ -42,7 +42,7 @@ public class Updater extends Task {
     private String updateDescription = "";
 
     private String zipFileAddress;
-    private final String versionAddress = "http://users.atw.hu/tgraf/version.txt";
+    private final String versionAddress = "http://users.atw.hu/tgraf/version.ver";
 
     private String currentVerison;
     private String updateVersion;
@@ -63,6 +63,8 @@ public class Updater extends Task {
     private boolean isUpToDate() {
         BufferedReader reader = null;
         try {
+            message += ("Cheking version...\n");
+            updateMessage(message);
             String filePath = download(versionFileDestination, versionAddress, useProxy);
             File versionFile = new File(filePath);
             reader = new BufferedReader(new FileReader(versionFile));
@@ -130,8 +132,8 @@ public class Updater extends Task {
 
             byte[] buf = new byte[1024];
             int n = 0;
-            message += ("Downloading..." + "\n");
-            updateMessage(message);
+            
+            
             int bytesRead = 0;
             int bytesCount = 0;
             int filesize = 0;
@@ -144,8 +146,7 @@ public class Updater extends Task {
                 out.flush();
             }
             updateProgress(filesize, filesize);
-            message += ("Download completed!" + "\n");
-            updateMessage(message);
+           
 //            
 //            while ((n = in.read(buf)) != -1) {
 //                out.write(buf, 0, n);
@@ -177,26 +178,33 @@ public class Updater extends Task {
 
     private void update() {
         if (!isUpToDate()) {
-            message += ("Starting download new files (" + updateVersion + ")..." + "\n");
-            updateMessage(message);
-            String filePath = download(zipFileDestination, zipFileAddress, useProxy);
-
-            updateMessage(message);
-            updateDestination += updateVersion;
-            if (new File(updateDestination).isDirectory()) {
-                try {
-                    message += ("Starting delete old direcotry (" + updateDestination + ")..." + "\n");
-                    updateMessage(message);
-                    delete(new File(updateDestination));
-                    message += ("Deleted!" + "\n");
-                    updateMessage(message);
-                } catch (IOException ex) {
-                    Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                message += ("Downloading new files (" + updateVersion + ")..." + "\n");
+                updateMessage(message);
+                String filePath = download(zipFileDestination, zipFileAddress, useProxy);
+                
+                message += ("File downloaded!\n");
+                updateMessage(message);
+                updateDestination += updateVersion;
+                if (new File(updateDestination).isDirectory()) {
+                    try {
+                        message += ("Delete old direcotry (" + updateDestination + ")..." + "\n");
+                        updateMessage(message);
+                        delete(new File(updateDestination));
+                        message += ("Deleted!" + "\n");
+                        updateMessage(message);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                unzipper(filePath, updateDestination);
+                System.out.println(currentVerison);
+                delete(new File(currentVerison));
+                currentVerison = updateVersion;
+                Launcher.getHandler().setCurriculumVersion(currentVerison);
+            } catch (IOException ex) {
+                Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
             }
-            unzipper(filePath, updateDestination);
-            currentVerison = updateVersion;
-            Launcher.getHandler().setCurriculumVersion(currentVerison);
         } else {
             message += ("Your curriculum is up to date" + "\n");
             updateMessage(message);
