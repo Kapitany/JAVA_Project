@@ -41,8 +41,9 @@ public class Launcher extends Application {
             //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
             System.out.println("in launcher:");
             if (handler == null) {
-                handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_0"); //TODO itt majd lehet a tallózást beállítani más projektekre
-            }//handler.list();
+                handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_1"); //TODO itt majd lehet a tallózást beállítani más projektekre
+            }
+//            handler.list();
             if (loader == null) {
                 loader = new SubjectListLoader(handler.getSubjPath());
             }
