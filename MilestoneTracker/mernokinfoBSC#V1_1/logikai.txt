@@ -1,3 +1,4 @@
+#VERSION:mernokinfoBSC#V1_1
 #NAME:Mérnökinformatikus BSc
 #SOURCE_FOR_THE_SUBJECTS:Subjects
 #REQUIREMENTS_TO_100%:3
