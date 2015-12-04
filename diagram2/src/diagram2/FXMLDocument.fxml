@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diagram2.FXMLDocumentController">
+   <children>
+      <Button fx:id="but" mnemonicParsing="false" text="Add 1" />
+      <PieChart fx:id="chart" labelsVisible="false" layoutX="136.0" layoutY="14.0" legendVisible="false" prefHeight="200.0" prefWidth="200.0" startAngle="90.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="but2" layoutY="36.0" mnemonicParsing="false" text="Add 2" />
+      <Button fx:id="but3" layoutY="76.0" mnemonicParsing="false" text="Add 3" />
+      <Label fx:id="kesz" layoutX="10.0" layoutY="117.0" text="Kész:         0 %" />
+      <Label fx:id="hatra" layoutX="10.0" layoutY="142.0" text="Hátra van: 0 %" />
+   </children>
+</AnchorPane>
