@@ -17,7 +17,11 @@ import java.util.Map;
 public class LogicalCurriculumHandler {
 
     private final String currPath;
-    private final String curriculumVersion;
+    private String curriculumVersion;
+
+    public void setCurriculumVersion(String curriculumVersion) {
+        this.curriculumVersion = curriculumVersion;
+    }
     
     private final String curriculumName;
     private final String pathSubjects;

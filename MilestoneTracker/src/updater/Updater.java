@@ -5,6 +5,7 @@
  */
 package updater;
 
+import handler.Launcher;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -46,8 +47,12 @@ public class Updater extends Task {
     private String currentVerison;
     private String updateVersion;
 
+    public String getUpdateVersion() {
+        return updateVersion;
+    }
+
     private String message = "";
-    
+
     public Updater(boolean proxy, String proxyAddress, int proxyPort, String currentVersion) {
         this.useProxy = proxy;
         this.proxyAddress = proxyAddress;
@@ -108,7 +113,7 @@ public class Updater extends Task {
             int size = conn.getContentLength();
             conn.disconnect();
             updateProgress(0, size);
-            message += ("Connecting to: " + url +"\n");
+            message += ("Connecting to: " + url + "\n");
             updateMessage(message);
 
             InputStream in;
@@ -119,13 +124,13 @@ public class Updater extends Task {
             } else {
                 in = new BufferedInputStream(link.openStream());
             }
-            message += ("Successfully connected!"+ "\n");
+            message += ("Successfully connected!" + "\n");
             updateMessage(message);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
 
             byte[] buf = new byte[1024];
             int n = 0;
-            message += ("Downloading..."+ "\n");
+            message += ("Downloading..." + "\n");
             updateMessage(message);
             int bytesRead = 0;
             int bytesCount = 0;
@@ -138,8 +143,8 @@ public class Updater extends Task {
                 bytesCount += bytesRead;
                 out.flush();
             }
-            updateProgress(filesize,filesize);
-            message += ("Download completed!"+ "\n");
+            updateProgress(filesize, filesize);
+            message += ("Download completed!" + "\n");
             updateMessage(message);
 //            
 //            while ((n = in.read(buf)) != -1) {
@@ -158,13 +163,13 @@ public class Updater extends Task {
 
             return filePath;
         } catch (MalformedURLException ex) {
-            message += ("Malformed URL!"+"\n");
+            message += ("Malformed URL!" + "\n");
             updateMessage(message);
         } catch (IOException ex) {
-            message += ("IOException"+"\n");
+            message += ("IOException" + "\n");
             updateMessage(message);
         } catch (Exception ex) {
-            message += ("Exception (timeout?)"+"\n");
+            message += ("Exception (timeout?)" + "\n");
             updateMessage(message);
         }
         return null;
@@ -172,18 +177,18 @@ public class Updater extends Task {
 
     private void update() {
         if (!isUpToDate()) {
-            message += ("Starting download new files (" + updateVersion + ")..."+"\n");
+            message += ("Starting download new files (" + updateVersion + ")..." + "\n");
             updateMessage(message);
             String filePath = download(zipFileDestination, zipFileAddress, useProxy);
-           
+
             updateMessage(message);
             updateDestination += updateVersion;
             if (new File(updateDestination).isDirectory()) {
                 try {
-                    message += ("Starting delete old direcotry (" + updateDestination + ")..."+ "\n");
+                    message += ("Starting delete old direcotry (" + updateDestination + ")..." + "\n");
                     updateMessage(message);
                     delete(new File(updateDestination));
-                    message += ("Deleted!"+"\n");
+                    message += ("Deleted!" + "\n");
                     updateMessage(message);
                 } catch (IOException ex) {
                     Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,8 +196,9 @@ public class Updater extends Task {
             }
             unzipper(filePath, updateDestination);
             currentVerison = updateVersion;
+            Launcher.getHandler().setCurriculumVersion(currentVerison);
         } else {
-            message += ("Your curriculum is up to date"+"\n");
+            message += ("Your curriculum is up to date" + "\n");
             updateMessage(message);
         }
     }
@@ -201,7 +207,7 @@ public class Updater extends Task {
         try {
             UnzipUtility zipFile = new UnzipUtility();
             zipFile.unzip(source, dest);
-            message += ("File '" + source + "' unzipped to '" + dest + "'"+"\n");
+            message += ("File '" + source + "' unzipped to '" + dest + "'" + "\n");
             updateMessage(message);
             System.out.println("File '" + source + "' unzipped to '" + dest + "'");
         } catch (IOException ex) {
@@ -220,7 +226,7 @@ public class Updater extends Task {
             for (File c : f.listFiles()) {
                 delete(c);
             }
-            message += (f.getName() + " deleted!"+"\n");
+            message += (f.getName() + " deleted!" + "\n");
             updateMessage(message);
             System.out.println(f.getName() + " is deleted!");
         }

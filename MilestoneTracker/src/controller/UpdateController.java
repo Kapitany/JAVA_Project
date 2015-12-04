@@ -1,5 +1,6 @@
 package controller;
 
+import handler.Launcher;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringProperty;
@@ -32,7 +33,7 @@ public class UpdateController implements Initializable {
     @FXML
     ProgressBar progressBar;
 
-    private String currentVersion = "2012_01_01";
+    private String currentVersion = Launcher.getHandler().getCurriculumVersion();
     
     
 //    private Updater updater;
@@ -44,6 +45,7 @@ public class UpdateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         btnUpdate.setOnAction((ActionEvent event) -> {
+            currentVersion = Launcher.getHandler().getCurriculumVersion();
             update();
         });
 
@@ -80,7 +82,7 @@ public class UpdateController implements Initializable {
         textAreaProgress.textProperty().bind(u.messageProperty());
         
         new Thread(u).start();
-
+        
 //        new Thread() {
 //            public void run() {
 //                                    if (!u.isUpToDate()) {
@@ -95,8 +97,6 @@ public class UpdateController implements Initializable {
     }
 
     //TODO
-    private void startUpdate() {
 
-    }
 
 }
