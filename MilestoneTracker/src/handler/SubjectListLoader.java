@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class SubjectListLoader {
     
-    private final ArrayList<Subject> subjectList;
+    private ArrayList<Subject> subjectList;
     private int numSubjects;
 
     @SuppressWarnings("null")

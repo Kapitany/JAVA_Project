@@ -213,5 +213,9 @@ public class LogicalCurriculumHandler {
     public String getCurriculumVersion() {
         return curriculumVersion;
     }
+
+    public String getCreditOverflowTo() {
+        return creditOverflowTo;
+    }
     
 }
