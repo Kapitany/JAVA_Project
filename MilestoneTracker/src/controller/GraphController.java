@@ -62,10 +62,11 @@ public class GraphController implements Initializable {
                 Label lblSubjetName;
 
                 String tempName = subjectsPerSemester.get(semester).get(subj).getSubjectName();
+                tempName += " - " +subjectsPerSemester.get(semester).get(subj).getCreditValue();
                 //lblSubjetName = new Text(tempName);
                 //lblSubjetName.setStyle("-fx-border-color:#000000");
                 if(tempName.length() >= 25){
-                    String [] tempNameArray = tempName.split(" ");
+                    //String [] tempNameArray = tempName.split(" ");
                     lblSubjetName = new Label();
                     /*tempName = tempNameArray[0];
                     for(int i = 1; i < tempNameArray.length; i++){

@@ -52,9 +52,11 @@ public class ExtraSubjectsController implements Initializable {
             tmpBox.getChildren().add(extraCreditTypeName);
 
             for (int j = 0; j < graphContainer.get(i).size(); j++) {
-                Label lblSubjetName = new Label(graphContainer.get(i).get(j).getSubjectName());
+                String tempName = graphContainer.get(i).get(j).getSubjectName();
+                tempName += " - " + graphContainer.get(i).get(j).getCreditValue();
+                Label lblSubjetName = new Label(tempName);
                 tmpBox.getChildren().add(lblSubjetName);
-                lblSubjetName.setEllipsisString(graphContainer.get(i).get(j).getSubjectName());
+                lblSubjetName.setEllipsisString(tempName);
                 tmpBox.setAlignment(Pos.TOP_CENTER);
                 tmpBox.setStyle("-fx-border-color:#000000");
             }
