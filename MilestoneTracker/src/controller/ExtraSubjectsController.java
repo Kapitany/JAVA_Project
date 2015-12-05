@@ -16,9 +16,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -38,30 +36,31 @@ public class ExtraSubjectsController implements Initializable {
         int numSemesters = Launcher.getGraphHandler().getNumSemesters();
         ArrayList<ArrayList<Subject>> graphContainer = Launcher.getGraphHandler().getGraphContainer();
 
+        gp.setStyle("-fx-border-color:#4444ff");
         for (int i = numSemesters; i < numSemesters + numExtraCreditTypes; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(100 / numSemesters);
-            RowConstraints rc = new RowConstraints();
             gp.getColumnConstraints().add(column);
         }
-        RowConstraints rc = new RowConstraints(30);
-        gp.getRowConstraints().add(0, rc);
+        /*RowConstraints rc = new RowConstraints(30);
+        gp.getRowConstraints().add(0, rc);*/
         int index = 0;
         for (int i = numSemesters; i < numSemesters + numExtraCreditTypes; i++) {
-            gp.add(new Label(extraCreditTypes[index]), index, 0);
-            index++;
-        }
-
-        for (int i = numSemesters; i < numSemesters + numExtraCreditTypes; i++) {
             VBox tmpBox = new VBox();
+            Label extraCreditTypeName = new Label(extraCreditTypes[index]);
+            extraCreditTypeName.setStyle("-fx-border-color:#44ff44");
+            tmpBox.getChildren().add(extraCreditTypeName);
+
             for (int j = 0; j < graphContainer.get(i).size(); j++) {
-                Text lblSubjetName = new Text(graphContainer.get(i).get(j).getSubjectName());
+                Label lblSubjetName = new Label(graphContainer.get(i).get(j).getSubjectName());
                 tmpBox.getChildren().add(lblSubjetName);
-                tmpBox.setAlignment(Pos.CENTER);
+                lblSubjetName.setEllipsisString(graphContainer.get(i).get(j).getSubjectName());
+                tmpBox.setAlignment(Pos.TOP_CENTER);
                 tmpBox.setStyle("-fx-border-color:#000000");
             }
-            gp.add(tmpBox, i, 1);
+            gp.add(tmpBox, i-numSemesters, 0);
+            index++;
         }
-        gp.setAlignment(Pos.CENTER_LEFT);
+        gp.setAlignment(Pos.TOP_LEFT);
     }
 }

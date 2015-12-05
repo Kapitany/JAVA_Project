@@ -43,7 +43,7 @@ public class GraphController implements Initializable {
         int numSemesters = Launcher.getGraphHandler().getNumSemesters();
         for (int i = 0; i < numSemesters/2+1; i++) {
             ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(100/(numSemesters/2+1));
+            //column.setPercentWidth(100/(numSemesters/2+1));
             pane.getColumnConstraints().add(column);
         }
         /*RowConstraints rc = new RowConstraints(100);
