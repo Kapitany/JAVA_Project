@@ -15,9 +15,14 @@
                         <fx:include source="MainSubjects.fxml" />
                     </content>
                 </Tab>
-                <Tab text="ExtraSubjects">
+                <Tab text="ExtraSubjects" closable="false" fx:id="tabExtra">
                     <content>
                         <fx:include source="ExtraSubjects.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabAddSubj" closable="false" text="AddNewSubject">
+                    <content>
+                        <fx:include source="AddNewSubject.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabPref" closable="false" text="Update">
