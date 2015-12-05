@@ -13,7 +13,7 @@
         <items>
           <AnchorPane fx:id="ap">
                <children>
-                  <GridPane fx:id="pane" layoutX="68.0" layoutY="89.0" prefHeight="398.0" prefWidth="386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="pane" focusTraversable="true" gridLinesVisible="true" layoutX="68.0" layoutY="89.0" prefHeight="398.0" prefWidth="386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
