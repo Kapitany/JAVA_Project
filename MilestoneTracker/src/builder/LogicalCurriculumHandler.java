@@ -127,6 +127,9 @@ public class LogicalCurriculumHandler {
         creditOverflowTo = tmpArray[1];
         tmpList.remove(0);
 
+        BufferedReader reader = new BufferedReader(new FileReader(currPath + "//documentation.txt"));
+        reader = new BufferedReader(new FileReader(currPath + "//websites.txt"));
+        
         if (!tmpList.isEmpty()) {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
         }
