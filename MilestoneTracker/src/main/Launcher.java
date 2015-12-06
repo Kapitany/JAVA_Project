@@ -49,13 +49,11 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
             //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
-            System.out.println("in launcher:");
+            System.out.println("Initializing....");
             if (handler == null) {
                 handler = new LogicalCurriculumHandler(source); //TODO itt majd lehet a tallózást beállítani más projektekre
             }
-//            for (int i = 0; i < handler.getMetadata().length; i++) {
-//                System.out.println(handler.getMetadata()[i]);
-//            }
+//            handler.list();
             if (loader == null) {
                 loader = new SubjectListLoader(handler.getSubjPath());
             }
@@ -65,9 +63,26 @@ public class Launcher extends Application {
                 graphHandler = new GraphFileHandler(loader.getSubjectList(), handler.getCurrPath());
             }
             graphHandler.getGraphContainer().add(new ArrayList<>());    //A custom tárgyak felvételéhez + 1 lista hozzáadva
-            System.out.println("Initialization in launcher completed without errors!");
             
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/
+            System.out.println("Initialization in launcher completed without errors!");
+            System.out.println("----------------------------------------------------");
+            System.out.println("STATISTICS:");
+            System.out.println("----------------------------------------------------");
+            System.out.println("All received credits: " + handler.getCreditsReceived());
+            System.out.println("to 100%: [at least]" + handler.getCreditsToReceive());
+            System.out.println("----------------------------------------------------");
+            System.out.println("Specific credits: " + handler.getPerTypeCounter());
+            System.out.println("to 100%: " + handler.getCreditTypes());
+            System.out.println("----------------------------------------------------");
+            System.out.println("Overflow goes to: " + handler.getCreditOverflowTo());
+            System.out.println("Extra 0 credit subjects to complete [by code]: " + handler.getListExtraReqs());
+            System.out.println("----------------------------------------------------");
+            System.out.println("Completed global requirements: " + handler.getNumCompletedGlobalReqs());
+            System.out.println("Number of global requirements to 100%: " + handler.getNumGlobalReqs());
+            System.out.println("----------------------------------------------------");
+            
+            
             Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
             Scene scene = new Scene(root);
 

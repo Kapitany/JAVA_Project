@@ -86,6 +86,14 @@ public class AddNewSubjectController implements Initializable {
                     try {
                         creditValue = Integer.valueOf(creditValueField.getText());
                         creditReq = Integer.valueOf(creditReqField.getText());
+                        if (creditValue < 0 || creditReq < 0) {
+                            checkResults += "The creditvalues must be at least 0!";
+                            checkSuccesfull = false;
+                        }
+                        if (creditReq > Launcher.getHandler().getCreditsReceived()) {
+                            checkResults += "[Creditreqirement not accomplished: Your subject will not be marked as completed]\n";
+                            checkSuccesfull = true;
+                        }
                     } catch (NumberFormatException ex) {
                         checkResults += "The credit value and required credits are integer values, please use numbers!\n";
                         checkSuccesfull = false;
@@ -101,7 +109,22 @@ public class AddNewSubjectController implements Initializable {
                             .add(subject);
                     subjectLst.appendText(nameField.getText() + "\n");
                     if(checkBox.isSelected()) {
-                        Launcher.getHandler().getCompletedSubjects().add(subject);
+                        System.out.println("----------------------------------------------------");
+                        System.out.println("ATTEMPTING TO RECEIVE CREDITS BY ADDING A NEW SUBJECT:");
+                        if(Launcher.getHandler().completeSubject(subject)) { //ezen a ponton ez mindenképpen igaz lesz
+                            checkResults += "Subject succesfully completed!\n";
+                            System.out.println("SUCCESS!");
+                            System.out.println(subject.getCreditValue() + " credits of '" + subject.getSubjectType() + "' type have been added!");
+                            System.out.println("----------------------------------------------------");
+                            System.out.println("All received credits: " + Launcher.getHandler().getCreditsReceived());
+                            System.out.println("Specific credits: " + Launcher.getHandler().getPerTypeCounter());
+                            System.out.println("----------------------------------------------------");
+                        }
+                        else {
+                            System.out.println("FAIL!");
+                            System.out.println("----------------------------------------------------");
+                            
+                        }
                     }
                     checkResults += "Subject succesfully saved!";
                     informationField.setStyle("-fx-border-color: green");

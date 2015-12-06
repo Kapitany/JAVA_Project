@@ -18,10 +18,6 @@ public class LogicalCurriculumHandler {
 
     private final String currPath;
     private String curriculumVersion;
-
-    public void setCurriculumVersion(String curriculumVersion) {
-        this.curriculumVersion = curriculumVersion;
-    }
     
     private final String curriculumName;
     private final String pathSubjects;
@@ -189,7 +185,7 @@ public class LogicalCurriculumHandler {
         numCompletedGlobalReqs++;
     }
 
-    public void receiveCredits(int creditValue) {
+    private void receiveCredits(int creditValue) {
         creditsReceived += creditValue;
     }
 
@@ -197,7 +193,7 @@ public class LogicalCurriculumHandler {
         return creditsReceived;
     }
 
-    public void addSpecificCredit(String creditType, int creditValue) {
+    private void addSpecificCredit(String creditType, int creditValue) {
         receiveCredits(creditValue);
         for (int i = 0; i < numberOfCreditTypes; i++) {
             if (perTypeCounter.get(i).containsKey(creditType) && perTypeCounter.get(i).get(creditType) + creditValue <= creditTypes.get(i).get(creditType)) {
@@ -223,8 +219,9 @@ public class LogicalCurriculumHandler {
     }
     
     public boolean completeSubject(Subject subject){
-        if(!completedSubjects.contains(subject)){
+        if((!completedSubjects.contains(subject)) && (subject.getCreditRequirement() <= creditsReceived)){
             completedSubjects.add(subject);
+            addSpecificCredit(subject.getSubjectType(), subject.getCreditValue());
             return true;
         }
         return false;
@@ -249,4 +246,51 @@ public class LogicalCurriculumHandler {
     public ArrayList<Subject> getCompletedSubjects() {
         return completedSubjects;
     }
+    
+    public void setCurriculumVersion(String curriculumVersion) {
+        this.curriculumVersion = curriculumVersion;
+    }
+
+    public ArrayList<Map<String, Integer>> getPerTypeCounter() {
+        return perTypeCounter;
+    }
+
+    public String getPathSubjects() {
+        return pathSubjects;
+    }
+
+    public int getNumGlobalReqs() {
+        return numGlobalReqs;
+    }
+
+    public int getNumCompletedGlobalReqs() {
+        return numCompletedGlobalReqs;
+    }
+
+    public int getCreditsToReceive() {
+        return creditsToReceive;
+    }
+
+    public int getNumberOfCreditTypes() {
+        return numberOfCreditTypes;
+    }
+
+    public ArrayList<Map<String, Integer>> getCreditTypes() {
+        return creditTypes;
+    }
+
+    public int getNumExtraReqs() {
+        return numExtraReqs;
+    }
+
+    public ArrayList<String> getListExtraReqs() {
+        return listExtraReqs;
+    }
+
+    public ArrayList<Map<String, Boolean>> getIsExtraCompleted() {
+        return isExtraCompleted;
+    }
+    
+    
+    
 }
