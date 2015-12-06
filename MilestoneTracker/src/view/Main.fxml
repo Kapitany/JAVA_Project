@@ -30,14 +30,34 @@
                         <fx:include source="AddNewSubject.fxml" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabUpdate" closable="false" text="Update">
+                <Tab fx:id="tabCalendar" closable="false" text="Calendar">
                     <content>
-                        <fx:include source="Update.fxml" />
+                        <fx:include source="Calendar.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabProfileManager" closable="false" text="ProfileManager">
+                    <content>
+                        <fx:include source="ProfileManager.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabSummarizer" closable="false" text="SemesterSummarizer">
+                    <content>
+                        <fx:include source="SemesterSummarizer.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabAchievments" closable="false" text="Achievments">
+                    <content>
+                        <fx:include source="Achievments.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabBrowser" closable="false" text="Browser">
                     <content>
                         <fx:include source="Browser.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabUpdate" closable="false" text="Update">
+                    <content>
+                        <fx:include source="Update.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabMeta" closable="false" text="CurriculumMetadata">

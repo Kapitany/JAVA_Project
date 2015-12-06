@@ -1,7 +1,6 @@
 package handler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +18,7 @@ public class Launcher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     private static GraphFileHandler graphHandler = null;
     private static LogicalCurriculumHandler handler = null;
     private static SubjectListLoader loader = null;
@@ -41,7 +40,7 @@ public class Launcher extends Application {
     public static String getSource() {
         return source;
     }
-    
+
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public void start(Stage primaryStage) throws Exception {
@@ -64,7 +63,7 @@ public class Launcher extends Application {
             }
             graphHandler.getGraphContainer().add(new ArrayList<>());    //A custom tárgyak felvételéhez + 1 lista hozzáadva
             System.out.println("Initialization in launcher completed without errors!");
-
+            
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/
             Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
             Scene scene = new Scene(root);
