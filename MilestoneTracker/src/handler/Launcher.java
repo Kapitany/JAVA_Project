@@ -1,5 +1,7 @@
 package handler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,6 +36,12 @@ public class Launcher extends Application {
         return graphHandler;
     }
 
+    private static final String source = "mernokinfoBSC#V1_1";
+
+    public static String getSource() {
+        return source;
+    }
+    
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public void start(Stage primaryStage) throws Exception {
@@ -41,9 +49,11 @@ public class Launcher extends Application {
             //itt a 3 inicializálás elleőrzés jellegű, ha valamelyik fájl korrput akkor még itt kilép és nem lesz később baj
             System.out.println("in launcher:");
             if (handler == null) {
-                handler = new LogicalCurriculumHandler("mernokinfoBSC#V1_1"); //TODO itt majd lehet a tallózást beállítani más projektekre
+                handler = new LogicalCurriculumHandler(source); //TODO itt majd lehet a tallózást beállítani más projektekre
             }
-//            handler.list();
+//            for (int i = 0; i < handler.getMetadata().length; i++) {
+//                System.out.println(handler.getMetadata()[i]);
+//            }
             if (loader == null) {
                 loader = new SubjectListLoader(handler.getSubjPath());
             }
@@ -52,6 +62,7 @@ public class Launcher extends Application {
             if (graphHandler == null) {
                 graphHandler = new GraphFileHandler(loader.getSubjectList(), handler.getCurrPath());
             }
+            graphHandler.getGraphContainer().add(new ArrayList<>());    //A custom tárgyak felvételéhez + 1 lista hozzáadva
             System.out.println("Initialization in launcher completed without errors!");
 
             /*EDDIG A PONTIG TART AZ INICIALIZÁLÁS*/

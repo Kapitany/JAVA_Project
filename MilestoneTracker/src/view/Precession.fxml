@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="850.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrecessionController">
+   <top>
+      <GridPane fx:id="pane" alignment="BASELINE_CENTER" focusTraversable="true" prefHeight="418.0" prefWidth="472.0">
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+   </top>
+   <center>
+      <Accordion prefHeight="432.0" prefWidth="474.0" BorderPane.alignment="CENTER">
+        <panes>
+            <TitledPane expanded="false" prefHeight="432.0" prefWidth="474.0" text="Statistics">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+          <TitledPane expanded="false" text="Diagrams">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </center>
+</BorderPane>

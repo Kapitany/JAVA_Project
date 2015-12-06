@@ -48,6 +48,7 @@ public class LogicalCurriculumHandler {
     private ArrayList<Subject> completedSubjects;
 
     public LogicalCurriculumHandler(String currPath) throws Exception {
+        completedSubjects = new ArrayList<>();
         this.currPath = currPath;
         List<String> tmpList = new ArrayList<>();
         String[] tmpArray;
@@ -152,6 +153,30 @@ public class LogicalCurriculumHandler {
         System.out.println("Extra credits are reallocated to '" + creditOverflowTo + "' block.");
         System.out.println("******************************************");
     }
+    
+    public String [] getMetadata() {
+        
+        String [] metadata = new String[16];
+        
+        metadata[0] = "******************************************";
+        metadata[1] = "CURRICULUM INFORMATION:";
+        metadata[2] = "******************************************";
+        metadata[3] = "Name: " + curriculumName;
+        metadata[4] = "Version: "+ curriculumVersion;
+        metadata[5] = "Source folder for the subjects: " + pathSubjects + "/";
+        metadata[6] = "Number of global requirements to 100% completion: " + numGlobalReqs;
+        metadata[7] = "Number of credits to receive: " + creditsToReceive;
+        metadata[8] = "Number of credit types: " + numberOfCreditTypes;
+        metadata[9] = "The types and the quantity to collect are: ";
+        metadata[10] = creditTypes.toString();
+        metadata[11] = "The number of extra completable subjects are: " + numExtraReqs;
+        metadata[12] = "The codes of these subjects are the following:";
+        metadata[13] = listExtraReqs.toString();
+        metadata[14] = "Extra credits are reallocated to '" + creditOverflowTo + "' block.";
+        metadata[15] = "******************************************";
+        
+        return metadata;
+    }
 
     public String getSubjPath() {
         return pathSubjects;
@@ -217,5 +242,8 @@ public class LogicalCurriculumHandler {
     public String getCreditOverflowTo() {
         return creditOverflowTo;
     }
-    
+
+    public ArrayList<Subject> getCompletedSubjects() {
+        return completedSubjects;
+    }
 }

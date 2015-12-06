@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class GraphFileHandler {
 
-    private final ArrayList<ArrayList<Subject>> graphContainer;
+    private ArrayList<ArrayList<Subject>> graphContainer;
     private final String graphName;
     private final int numSemesters;
     private final int[] creditsPerSemester;

@@ -12,12 +12,17 @@
             <tabs>
                 <Tab fx:id="tabStart" closable="false" text="MainSubjects">
                     <content>
-                        <fx:include source="MainSubjects.fxml" />
+                        <fx:include source="Precession.fxml" />
                     </content>
                 </Tab>
-                <Tab text="ExtraSubjects" closable="false" fx:id="tabExtra">
+                <Tab fx:id="tabExtra" closable="false" text="ExtraSubjects">
                     <content>
                         <fx:include source="ExtraSubjects.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabDependencies" closable="false" text="Dependencies">
+                    <content>
+                        <fx:include source="Dependencies.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabAddSubj" closable="false" text="AddNewSubject">
@@ -25,9 +30,19 @@
                         <fx:include source="AddNewSubject.fxml" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabPref" closable="false" text="Update">
+                <Tab fx:id="tabUpdate" closable="false" text="Update">
                     <content>
                         <fx:include source="Update.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabBrowser" closable="false" text="Browser">
+                    <content>
+                        <fx:include source="Browser.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="tabMeta" closable="false" text="CurriculumMetadata">
+                    <content>
+                        <fx:include source="CurriculumMetaData.fxml" />
                     </content>
                 </Tab>
             </tabs>

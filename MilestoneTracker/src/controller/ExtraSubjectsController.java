@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import handler.Launcher;
@@ -36,19 +31,11 @@ public class ExtraSubjectsController implements Initializable {
         int numSemesters = Launcher.getGraphHandler().getNumSemesters();
         ArrayList<ArrayList<Subject>> graphContainer = Launcher.getGraphHandler().getGraphContainer();
 
-        gp.setStyle("-fx-border-color:#4444ff");
-        for (int i = numSemesters; i < numSemesters + numExtraCreditTypes; i++) {
-            ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(100 / numSemesters);
-            gp.getColumnConstraints().add(column);
-        }
-        /*RowConstraints rc = new RowConstraints(30);
-        gp.getRowConstraints().add(0, rc);*/
         int index = 0;
         for (int i = numSemesters; i < numSemesters + numExtraCreditTypes; i++) {
             VBox tmpBox = new VBox();
             Label extraCreditTypeName = new Label(extraCreditTypes[index]);
-            extraCreditTypeName.setStyle("-fx-border-color:#44ff44");
+            extraCreditTypeName.setStyle("-fx-font-weight: bold");
             tmpBox.getChildren().add(extraCreditTypeName);
 
             for (int j = 0; j < graphContainer.get(i).size(); j++) {
@@ -58,11 +45,10 @@ public class ExtraSubjectsController implements Initializable {
                 tmpBox.getChildren().add(lblSubjetName);
                 lblSubjetName.setEllipsisString(tempName);
                 tmpBox.setAlignment(Pos.TOP_CENTER);
-                tmpBox.setStyle("-fx-border-color:#000000");
             }
             gp.add(tmpBox, i-numSemesters, 0);
             index++;
         }
-        gp.setAlignment(Pos.TOP_LEFT);
+        gp.setAlignment(Pos.CENTER);
     }
 }

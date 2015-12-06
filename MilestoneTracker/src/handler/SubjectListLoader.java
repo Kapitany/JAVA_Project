@@ -54,5 +54,9 @@ public class SubjectListLoader {
     public ArrayList<Subject> getSubjectList() {
         return subjectList;
     }
+ 
+    public int getNumSubjects() {
+        return numSubjects;
+    }
     
 }
