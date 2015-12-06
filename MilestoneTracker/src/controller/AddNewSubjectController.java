@@ -47,9 +47,12 @@ public class AddNewSubjectController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         subjectType.setText(Launcher.getHandler().getCreditOverflowTo());
         subjectLst.setStyle("-fx-border-color:#000000");
-        for (Subject subject : Launcher.getLoader().getSubjectList()) {
-            subjectLst.appendText(subject.getSubjectName() + "\n");
+        for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
+            for (Subject subject : list) {
+                subjectLst.appendText(subject.getSubjectName() + "\n");
+            }
         }
+
         informationField.setPromptText("First rule: Do not try to register a subject with an already stored subject code. Second rule: Fill all the fields! Third rule: The creditvalue and required credits must be numbers!");
 
         registerButton.setOnAction(new EventHandler<ActionEvent>() {

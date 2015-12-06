@@ -1,5 +1,6 @@
-package builder;
+package functional;
 
+import builder.Subject;
 import java.util.ArrayList;
 
 /**
