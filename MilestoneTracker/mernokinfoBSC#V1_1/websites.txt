@@ -1,0 +1,3 @@
+NEPTUN;https://neptun11.uni-pannon.hu/hallgato/login.aspx
+MOODLE;http://oktatas.mik.uni-pannon.hu/
+MIK;http://mik.uni-pannon.hu/hu
