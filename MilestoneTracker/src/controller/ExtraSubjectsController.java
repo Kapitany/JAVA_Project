@@ -1,7 +1,7 @@
 package controller;
 
-import handler.Launcher;
-import handler.Subject;
+import main.Launcher;
+import builder.Subject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

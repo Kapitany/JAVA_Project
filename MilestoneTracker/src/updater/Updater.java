@@ -5,7 +5,7 @@
  */
 package updater;
 
-import handler.Launcher;
+import main.Launcher;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

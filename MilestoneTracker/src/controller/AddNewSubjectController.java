@@ -1,8 +1,9 @@
 package controller;
 
-import handler.Launcher;
-import handler.Subject;
+import main.Launcher;
+import builder.Subject;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -56,18 +57,18 @@ public class AddNewSubjectController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 informationField.clear();
-                
-                System.out.println(Launcher.getHandler().getCompletedSubjects());   //TODO:NEM TÁROLJA A TÁRGYAKAT!!!
-                
                 String checkResults = "";
                 boolean checkSuccesfull = true;
                 
-                for (Subject subject : Launcher.getLoader().getSubjectList()) {
-                    if (subject.getSubjectCode().equals(codeField.getText())) {
-                        checkResults += "This subject code is already stored!\n";
-                        checkSuccesfull = false;
+                for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
+                    for (Subject subject : list) {
+                        if (subject.getSubjectCode().equals(codeField.getText())) {
+                            checkResults += "This subject code is already stored!\n";
+                            checkSuccesfull = false;
+                        }
                     }
                 }
+                
                 if (nameField.getText().isEmpty()
                         || codeField.getText().isEmpty()
                         || creditValueField.getText().isEmpty()

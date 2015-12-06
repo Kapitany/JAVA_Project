@@ -1,5 +1,8 @@
-package handler;
+package main;
 
+import builder.LogicalCurriculumHandler;
+import builder.SubjectListLoader;
+import builder.GraphFileHandler;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -34,13 +37,13 @@ public class Launcher extends Application {
     public static GraphFileHandler getGraphHandler() {
         return graphHandler;
     }
-
+    
     private static final String source = "mernokinfoBSC#V1_1";
 
     public static String getSource() {
         return source;
     }
-
+    
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public void start(Stage primaryStage) throws Exception {

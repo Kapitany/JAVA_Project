@@ -5,7 +5,7 @@
  */
 package controller;
 
-import handler.Launcher;
+import main.Launcher;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
