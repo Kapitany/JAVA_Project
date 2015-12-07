@@ -117,7 +117,7 @@ public class AddNewSubjectController implements Initializable {
                             System.out.println(subject.getCreditValue() + " credits of '" + subject.getSubjectType() + "' type have been added!");
                             System.out.println("----------------------------------------------------");
                             System.out.println("All received credits: " + Launcher.getHandler().getCreditsReceived());
-                            System.out.println("Specific credits: " + Launcher.getHandler().getPerTypeCounter());
+                            //System.out.println("Specific credits: " + Launcher.getHandler().getPerTypeCounter());
                             System.out.println("----------------------------------------------------");
                         }
                         else {
