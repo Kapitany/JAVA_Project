@@ -5,9 +5,13 @@ import builder.Subject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -24,8 +28,99 @@ public class PrecessionController implements Initializable {
     @FXML
     GridPane pane;
     
+    @FXML
+    public PieChart dif1;
+    
+    @FXML
+    public PieChart hum;
+    
+    @FXML
+    public PieChart dif2;
+    
+    @FXML
+    public PieChart szab;
+    
+    @FXML
+    public PieChart kot;
+    
+    @FXML
+     public StackedBarChart allDiagramm;
+    
+    ObservableList<PieChart.Data> kotChartDataInicializer
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Kész", 0),
+                        new PieChart.Data("Hátra van", 100));
+    
+    ObservableList<PieChart.Data> szabChartDataInicializer
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Kész", 0),
+                        new PieChart.Data("Hátra van", 100));
+    
+    ObservableList<PieChart.Data> dif1ChartDataInicializer
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Kész", 0),
+                        new PieChart.Data("Hátra van", 100));
+    
+    ObservableList<PieChart.Data> dif2ChartDataInicializer
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Kész", 0),
+                        new PieChart.Data("Hátra van", 100));
+    
+    ObservableList<PieChart.Data> humChartDataInicializer
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Kész", 0),
+                        new PieChart.Data("Hátra van", 100));
+    
+    
+    
+    
+    
+    private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
+        int i = 1;
+        for (PieChart.Data data : pieChartData) {
+            data.getNode().setStyle("-fx-pie-color: " + pieColors[i % pieColors.length ] + ";");
+            i++;
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        dif1.setData(dif1ChartDataInicializer);
+        dif2.setData(dif2ChartDataInicializer);
+        szab.setData(szabChartDataInicializer);
+        kot.setData(kotChartDataInicializer);
+        hum.setData(humChartDataInicializer);
+        
+        applyCustomColorSequence(
+                kotChartDataInicializer,
+                 "red",
+                "green"
+        );
+        
+        applyCustomColorSequence(
+                dif2ChartDataInicializer,
+                 "red",
+                "green"
+        );
+        
+        applyCustomColorSequence(
+                dif1ChartDataInicializer,
+                 "red",
+                "green"
+        );
+         applyCustomColorSequence(
+                szabChartDataInicializer,
+                 "red",
+                "green"
+        );
+         
+         applyCustomColorSequence(
+                humChartDataInicializer,
+                 "red",
+                "green"
+        );
+        
         
         pane.setStyle("-fx-border-color:#ff4444");
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  *
@@ -27,6 +28,8 @@ public class LogicalCurriculumHandler {
 
     private final int creditsToReceive;
     private int creditsReceived;
+    
+    private Properties perTypeCounterProperty = new Properties();
 
     private final int numberOfCreditTypes;
     private final ArrayList<Map<String, Integer>> creditTypes;
@@ -130,6 +133,10 @@ public class LogicalCurriculumHandler {
             throw new Exception("Curriculum File is corrupted! Please update your files!");
         }
         System.out.println(curriculumName + " initialised!");
+        
+        for (int i = 0; i < perTypeCounter.size(); i++) {
+            perTypeCounterProperty.putAll(perTypeCounter.get(i));
+        }
     }
 
     public void list() {
@@ -251,9 +258,9 @@ public class LogicalCurriculumHandler {
         this.curriculumVersion = curriculumVersion;
     }
 
-    public ArrayList<Map<String, Integer>> getPerTypeCounter() {
+    /*public ArrayList<Map<String, Integer>> getPerTypeCounter() {
         return perTypeCounter;
-    }
+    }*/
 
     public String getPathSubjects() {
         return pathSubjects;
