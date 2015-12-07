@@ -28,14 +28,12 @@ public class LogicalCurriculumHandler {
 
     private final int creditsToReceive;
     private int creditsReceived;
-    
-    private Properties perTypeCounterProperty = new Properties();
 
     private final int numberOfCreditTypes;
     private final ArrayList<Map<String, Integer>> creditTypes;
+    private Properties perTypeCounterProperty;
     //numberOfCreditTypes elemszámú lista, ami kulcs-érték párokat tartalmaz -> kredittípus és a mennyiségi követelmény
     @SuppressWarnings("FieldMayBeFinal")
-    private ArrayList<Map<String, Integer>> perTypeCounter;
 
     private final int numExtraReqs;
     private final ArrayList<String> listExtraReqs;
@@ -92,7 +90,7 @@ public class LogicalCurriculumHandler {
         tmpList.remove(0);
 
         creditTypes = new ArrayList<>();
-        perTypeCounter = new ArrayList<>();
+        ArrayList<Map<String, Integer>> perTypeCounter = new ArrayList<>();
         for (int i = 0; i < numberOfCreditTypes; i++) {
             tmpArray = tmpList.get(0).split(":");
             Map<String, Integer> typePlusQuantity = new HashMap<>();
@@ -134,6 +132,7 @@ public class LogicalCurriculumHandler {
         }
         System.out.println(curriculumName + " initialised!");
         
+        perTypeCounterProperty = new Properties();
         for (int i = 0; i < perTypeCounter.size(); i++) {
             perTypeCounterProperty.putAll(perTypeCounter.get(i));
         }
@@ -257,10 +256,6 @@ public class LogicalCurriculumHandler {
     public void setCurriculumVersion(String curriculumVersion) {
         this.curriculumVersion = curriculumVersion;
     }
-
-    /*public ArrayList<Map<String, Integer>> getPerTypeCounter() {
-        return perTypeCounter;
-    }*/
 
     public String getPathSubjects() {
         return pathSubjects;
