@@ -13,9 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import static javafx.scene.input.KeyCode.BACK_SPACE;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import main.Launcher;
 
 /**
@@ -37,12 +36,11 @@ public class DependenciesController implements Initializable {
     TextField depDataField;
     @FXML
     Button clearButton;
-            
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Subject> results = FXCollections.observableArrayList();
-        
-        
+
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -53,7 +51,7 @@ public class DependenciesController implements Initializable {
                 depDataField.clear();
             }
         });
-        
+
         nameField.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -62,11 +60,10 @@ public class DependenciesController implements Initializable {
                 for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
                     for (Subject subject : list) {
                         if (event.getCharacter().hashCode() == 8) {//ez a backspace kódja
-                            if (subject.getSubjectName().contains(nameField.getText())) {
+                            if (subject.getSubjectName().contains(nameField.getText()) && subject.getSubjectCode().contains(codeField.getText())) {
                                 results.add(subject);
                             }
-                        }
-                        else if (subject.getSubjectName().contains(nameField.getText() + event.getCharacter())) {
+                        } else if (subject.getSubjectName().contains(nameField.getText() + event.getCharacter()) && subject.getSubjectCode().contains(codeField.getText())) {
                             results.add(subject);
                         }
                     }
@@ -75,6 +72,33 @@ public class DependenciesController implements Initializable {
             }
         });
         
-    }    
-    
+        codeField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                resultList.getItems().clear();
+                results.clear();
+                for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
+                    for (Subject subject : list) {
+                        if (event.getCharacter().hashCode() == 8) {//ez a backspace kódja
+                            if (subject.getSubjectCode().contains(codeField.getText()) && subject.getSubjectName().contains(nameField.getText())) {
+                                results.add(subject);
+                            }
+                        } else if (subject.getSubjectCode().contains(codeField.getText() + event.getCharacter()) && subject.getSubjectName().contains(nameField.getText())) {
+                            results.add(subject);
+                        }
+                    }
+                }
+                resultList.setItems(results);
+            }
+        });
+
+        resultList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                subDataField.clear();
+                subDataField.appendText(resultList.getSelectionModel().getSelectedItem().toString());
+            }
+        });
+    }
+
 }
