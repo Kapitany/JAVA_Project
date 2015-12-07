@@ -2,6 +2,7 @@ package datepickertest;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,12 +15,28 @@ import java.time.LocalDate;
  * @author Otti
  */
 public class CalendarEvent {
-    String id;
+    /*int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }*/
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
     String eventName;
     String description;
-    LocalDate startDate;
-    LocalDate endDate;
     String type;
+    LocalDateTime startDate;
+    LocalDateTime endDate;
     
     public String getEventName() {
         return eventName;
@@ -37,19 +54,19 @@ public class CalendarEvent {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -61,14 +78,13 @@ public class CalendarEvent {
         this.type = interval;
     }
 
-    public CalendarEvent(String eventName, String description, LocalDate startDate, LocalDate endDate, String type) {
+    public CalendarEvent(/*int id,*/ String eventName, String description, String type, LocalDateTime startDate, LocalDateTime endDate) {
+        //this.id = id;
         this.eventName = eventName;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
-        
-        
     }
     
     

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="792.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datepickertest.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="773.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datepickertest.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <DatePicker fx:id="datepicker" cache="true" cacheHint="SCALE" editable="true" focusTraversable="false" layoutX="17.0" layoutY="14.0" promptText="Select Date" />
@@ -29,18 +29,20 @@
         </rowConstraints>
          <children>
             <Label text="Description" GridPane.rowIndex="1" />
-            <Label prefHeight="21.0" prefWidth="42.0" text="Type" GridPane.rowIndex="2" />
+            <Label prefHeight="21.0" prefWidth="86.0" text="Repeat type" GridPane.rowIndex="2" />
             <Label text="Event name" />
             <ChoiceBox fx:id="choiceBox" cache="true" prefHeight="31.0" prefWidth="341.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea fx:id="descriptionTExtArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" promptText="alma" text="event description..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="eventNameTextField" GridPane.columnIndex="1" />
             <Label prefHeight="21.0" prefWidth="97.0" text="Starting date" GridPane.rowIndex="3" />
             <Label prefHeight="21.0" prefWidth="97.0" text="End date" GridPane.rowIndex="5" />
-            <DatePicker fx:id="datepicker1" cache="true" cacheHint="SCALE" editable="true" focusTraversable="false" prefHeight="31.0" prefWidth="302.0" promptText="Select Date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker fx:id="datepicker2" cache="true" cacheHint="SCALE" editable="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="302.0" promptText="Select Date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="startDatePicker" cache="true" cacheHint="SCALE" editable="true" focusTraversable="false" prefHeight="31.0" prefWidth="302.0" promptText="Select Date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="endDatePicker" cache="true" cacheHint="SCALE" editable="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="302.0" promptText="Select Date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ChoiceBox fx:id="timeChoiceFrom" prefHeight="32.0" prefWidth="302.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="timeChoiceTo" prefHeight="24.0" prefWidth="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="but" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
          </children>
       </GridPane>
+      <ListView fx:id="selectedDateEvents" cache="true" editable="true" layoutX="14.0" layoutY="319.0" prefHeight="440.0" prefWidth="540.0" />
     </children>
 </AnchorPane>

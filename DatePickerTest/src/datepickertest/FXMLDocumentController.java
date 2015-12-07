@@ -5,25 +5,36 @@
  */
 package datepickertest;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
 import java.time.MonthDay;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-//import jfxtras.scene.control.LocalTimePicker;
 
 /**
  *
@@ -38,99 +49,211 @@ public class FXMLDocumentController implements Initializable {
     DatePicker datePicker1;
     @FXML
     ChoiceBox<String> choiceBox;
-    
+        
     @FXML
-    TextField eventNameTextField;
-    
-
+    private Button but;
+    @FXML
+    private TextField eventNameTextField;
+    @FXML
+    private TextArea descriptionTextArea;
+    @FXML
+    private ChoiceBox typeChoiceBox;
+    @FXML
+    private ChoiceBox timeChoiceFrom;
+    @FXML
+    private ChoiceBox timeChoiceTo;
+    @FXML
+    private DatePicker startDatePicker;
+    @FXML
+    private DatePicker endDatePicker;
     //
     //LocalTimePicker localTimePicker;
     public FXMLDocumentController(){
         
     }
-    
+    public ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+
     //új esemény hozzáadása (combobox alapján történő esemény (évi, havi, heti, napi))
-    public void setIntv(DateCell dc, LocalDate item ){     
-        String intv = choiceBox.getValue();
-        if(intv.equals("Dayly")){
-            /*if(MonthDay.from(item).equals(MonthDay.of(Month.MARCH, dayOfMonth))){
-                
-            }*/
-        }else if(intv.equals("Weekly")){
-            for (int i = 0; i < 12; i++) {
-                //if(MonthDay.from(item).equals(MonthDay.of(i, 12))){
-                    dc.setTooltip(new Tooltip(i+"Happy Birthday!"));
-                    dc.setStyle("-fx-background-color: #ff4444;");
-                //}
-            }
-        }else if(intv.equals("Yearly")){
-            if(MonthDay.from(item).equals(MonthDay.of(12, 25))){
-                dc.setTooltip(new Tooltip("Happy Birthday!"));
-                dc.setStyle("-fx-background-color: #ff4444;");
-            }
-        }else if(intv.equals("None")){
-            /*LocalDate date = datePicker1.getValue();
-            if(MonthDay.from(item).equals(MonthDay.of(date.getMonthValue(), date.getDayOfMonth()))){
-                if(!eventNameTextField.getPromptText().equals("")){
-                    dc.setTooltip(new Tooltip(eventNameTextField.getPromptText()));
+    public void setIntv(DateCell dc, LocalDate item , ArrayList<CalendarEvent> events){ 
+        String intv;
+        LocalDateTime startTime;
+        LocalDateTime endTime;
+        System.out.println(item);
+        for (int i = 0; i < events.size(); i++) {
+            intv = events.get(i).getType();
+            startTime = events.get(i).getStartDate();
+            endTime = events.get(i).getEndDate();
+            if(intv.equals("None")){
+                if(MonthDay.from(item).equals(MonthDay.of(startTime.getMonth(), startTime.getDayOfMonth()))){
+                    dc.setTooltip(new Tooltip(events.get(i).getEventName()+ "\n"+ events.get(i).getDescription()));
                     dc.setStyle("-fx-background-color: #4444ff;");
-            
                 }
-            }*/
+            }else if(intv.equals("Weekly")){
+                if(MonthDay.from(item).equals(MonthDay.of(startTime.getMonth(), startTime.getDayOfMonth()))){
+                    dc.setTooltip(new Tooltip(events.get(i).getEventName()+ "\n"+ events.get(i).getDescription()));
+                    dc.setStyle("-fx-background-color: #44ff44;");
+                }else {
+                    do{
+                        if(MonthDay.from(item).equals(MonthDay.of(startTime.plusDays(7).getMonth(), startTime.plusDays(7).getDayOfMonth()))){
+                            dc.setTooltip(new Tooltip(events.get(i).getEventName()+ "\n"+ events.get(i).getDescription()));
+                            dc.setStyle("-fx-background-color: #44ff44;");
+                        }
+                        startTime = startTime.plusDays(7);
+                    }while(MonthDay.of(startTime.getMonth(), startTime.getDayOfMonth()).isBefore(MonthDay.of(12, 12)));
+                }
+            }else if(intv.equals("Yearly")){
+                if(MonthDay.from(item).equals(MonthDay.of(12, 25))){
+                    dc.setTooltip(new Tooltip(events.get(i).getDescription()));
+                    dc.setStyle("-fx-background-color: #ff4444;");
+                }
+            }else if(intv.equals("Dayly")){
+                if(MonthDay.from(item).equals(MonthDay.of(startTime.getMonth(), startTime.getDayOfMonth()))){
+                    dc.setTooltip(new Tooltip(events.get(i).getEventName()+ "\n"+ events.get(i).getDescription()));
+                    dc.setStyle("-fx-background-color: #44ff44;");
+                }else {
+                    do{
+                        if(MonthDay.from(item).equals(MonthDay.of(startTime.plusDays(7).getMonth(), startTime.plusDays(7).getDayOfMonth()))){
+                            dc.setTooltip(new Tooltip(events.get(i).getEventName()+ "\n"+ events.get(i).getDescription()));
+                            dc.setStyle("-fx-background-color: #ffff00;");
+                        }
+                        startTime = startTime.plusDays(1);
+                    }while(MonthDay.of(startTime.getMonth(), startTime.getDayOfMonth()).isBefore(MonthDay.of(12, 12)));
+                }
+            }
+        
         }
     }
     
     
-    
-    final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+//    public void createDayCellFactory()
+    Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
         public DateCell call(final DatePicker datePicker) {
             return new DateCell() {
                 @Override public void updateItem(LocalDate item, boolean empty) {
                     super.updateItem(item, empty);
-
-                    setIntv(this, item);
-                    /*if (MonthDay.from(item).equals(MonthDay.of(12, 25))) {
-                        setTooltip(new Tooltip("Happy Birthday!"));
-                        setStyle("-fx-background-color: #ff4444;");
-                    }
-                    if (item.equals(LocalDate.now().plusDays(1))) {
-                        // Tomorrow is too soon.
-                        setDisable(true);
-                    }*/
+                    setIntv(this, item, events);
                 }
             };
         }
     };
     
-    public void loadEvents(){
-        
+    public void loadEvents(ArrayList<CalendarEvent> events){
+        eventReader("src//calendarEvents.txt", events);
+        System.out.println("Events loaded");
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("initialize...");
         
-        loadEvents();
-        
-        //localTimePicker = new LocalTimePicker();
-        
-        ObservableList<String> dayList = FXCollections.observableArrayList("None", "Dayly", "Weekly", "Yearly");
+        loadEvents(events);
+               
+        ObservableList<String> dayList = FXCollections.observableArrayList("None"/*, "Dayly"*/, "Weekly", "Yearly");
         
         choiceBox.setItems(dayList);
         choiceBox.setValue("None");
+        
+        ObservableList<String> timeList = FXCollections.observableArrayList("00:00","02:00","04:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
+        timeChoiceFrom.setItems(timeList);
+        timeChoiceFrom.setValue("08:00");
+        timeChoiceTo.setItems(timeList);
+        timeChoiceTo.setValue("08:00");
+    
+        datepicker.setShowWeekNumbers(true);
+//        datepicker.requestFocus();
+
+        System.out.println("Datecellfactory started");
         datepicker.setDayCellFactory(dayCellFactory);
         
         
-        
-        datepicker.setValue(LocalDate.of(2015, 12, 8));
-        datepicker.setValue(LocalDate.of(2015, 12, 10));
-        //datepicker.setTooltip(new Tooltip("Tooltip"));
-
-        datepicker.setShowWeekNumbers(true);
         //datepicker.show();
-        datepicker.requestFocus();
+        
+        
+        
+              
+         but.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        
+                        addEvent(events);
+                        //events.add(new CalendarEvent(eventNameTextField.getText(),descriptionTextArea.getText(),, endDatePicker.getValue(),
+                        //    typeChoiceBox.getValue().toString()));
+                        eventSaver(events);
+                    }
+                });
+         
     }    
+    public void addEvent(ArrayList<CalendarEvent>events){
+        //int id = events.get(events.size()-1).getId()+1;
+        System.out.println(eventNameTextField.getText()+ " "+ descriptionTextArea.getText()+" "+ choiceBox.getValue()+" "+startDatePicker.getValue()+ " "+ timeChoiceFrom.getValue());
+        String stTime = startDatePicker.getValue()+ " "+ timeChoiceFrom.getValue();
+        String endTime = endDatePicker.getValue()+ " "+ timeChoiceTo.getValue();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startTime  = LocalDateTime.parse(stTime, formatter);
+        LocalDateTime eTime  = LocalDateTime.parse(endTime, formatter);
+        events.add(events.size(), new CalendarEvent(eventNameTextField.getText(), descriptionTextArea.getText(), choiceBox.getValue(), startTime, eTime));
+        datepicker.setDayCellFactory(dayCellFactory);
+    }
     
+    public void eventSaver(ArrayList<CalendarEvent> events) {
+        
+        BufferedWriter writer = null;
+        try {
+            File file = new File("calendarevents.txt");
+            System.out.println(file.getCanonicalPath());
+            writer = new BufferedWriter(new FileWriter(file));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                for (int i = 0; i < events.size(); i++) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    String sDate = events.get(i).getStartDate().format(formatter);
+                    String eDate = events.get(i).getEndDate().format(formatter);
+                    //System.out.println(/*events.get(i).getId()+"%%"+*/events.get(i).getEventName()+"%%"+events.get(i).getDescription()+"%%"+events.get(i).getType()+"%%"+sDate+"%%"+eDate);
+                    writer.newLine();                    
+                    writer.write(/*events.get(i).getId()+"%%"+*/events.get(i).getEventName()+"%%"+events.get(i).getDescription()+"%%"+events.get(i).getType()+"%%"+sDate+"%%"+eDate);
+                }
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
+    public ArrayList<CalendarEvent> eventReader(String source, ArrayList<CalendarEvent> events) {
+        BufferedReader reader = null;
+        try {
+            File file = new File(source);
+            System.out.println(file.getCanonicalPath());
+            reader = new BufferedReader(new FileReader(file));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                String temp = reader.readLine();
+                int i= 0;
+                while(temp != null){
+                    String [] tempSplit = temp.split("%%");
+                    //System.out.println("Read: "+tempSplit[0]+ " "+tempSplit[1]+" "+tempSplit[2]+ " "+tempSplit[3]+ " "+tempSplit[4]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime stld = LocalDateTime.parse(tempSplit[4], formatter);
+                    LocalDateTime endld = LocalDateTime.parse(tempSplit[4], formatter);
+                    //int k = Integer.valueOf(tempSplit[0]);
+                    //System.out.println(tempSplit[0]/*+" " + k*/);
+                    events.add(i, new CalendarEvent(/*Integer.parseInt(tempSplit[0]), */tempSplit[0], tempSplit[1], tempSplit[2], stld, endld));
+                    //System.out.println(events.get(i).getEventName() + " " + events.get(i).getDescription() + " " + events.get(i).getInterval() + " " + events.get(i).getStartDate().toString()+ " " + events.get(i).getEndDate().toString());
+                    temp = reader.readLine();
+                    i++;
+                }
+
+                reader.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return events;
+     }
 
 }
