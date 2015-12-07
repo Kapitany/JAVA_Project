@@ -30,7 +30,7 @@ public class UpdateController implements Initializable {
     @FXML
     ProgressBar progressBar;
 
-    private String currentVersion = Launcher.getHandler().getCurriculumVersion();
+    private String currentVersion;
     
     
 //    private Updater updater;
@@ -44,7 +44,7 @@ public class UpdateController implements Initializable {
         btnUpdate.setId("regbutton");
         btnUpdate.setOnAction((ActionEvent event) -> {
             currentVersion = Launcher.getHandler().getCurriculumVersion();
-            update();
+            update(currentVersion);
         });
 
     }
@@ -53,7 +53,7 @@ public class UpdateController implements Initializable {
     // + valahova el kell helyezni a programba az aktuális verziót 
     // + a progi letölt egy update.zip-et, és kicsomagolja egy mappába aminek
     // a neve az update "verziója"
-    private void update() {
+    private void update(String ver) {
 
         int proxyPort = 0;
         String proxyAddress = "";
@@ -74,7 +74,7 @@ public class UpdateController implements Initializable {
             useProxy = false;
         }
         
-        u = new Updater(useProxy, proxyAddress, proxyPort, currentVersion);
+        u = new Updater(useProxy, proxyAddress, proxyPort, ver);
         
         progressBar.progressProperty().bind(u.progressProperty());
         textAreaProgress.textProperty().bind(u.messageProperty());

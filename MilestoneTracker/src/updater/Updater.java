@@ -20,6 +20,8 @@ import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.concurrent.Task;
@@ -41,9 +43,9 @@ public class Updater extends Task {
 
     private String updateDescription = "";
 
-    private String zipFileAddress;
+    private String remoteAddress;
     private final String versionAddress = "http://users.atw.hu/tgraf/version.ver";
-
+    private Map<String, Pair<String,String>> curriculum;
     private String currentVerison;
     private String updateVersion;
 
@@ -65,23 +67,43 @@ public class Updater extends Task {
         try {
             message += ("Cheking version...\n");
             updateMessage(message);
+      
+            
+//            igy nez ki a version.ver
+//            mernokinfoBSC#V1_1;http://users.atw.hu/tgraf/update.zip
+//            proginfoBSC#V0_0;http:/valami.link.com/something.zip
+//            gepeszMSC#V0_0;http://ez.egy.masik.link.hu/xyz.zip
+                     
+            
             String filePath = download(versionFileDestination, versionAddress, useProxy);
             File versionFile = new File(filePath);
             reader = new BufferedReader(new FileReader(versionFile));
-            StringBuilder sb = new StringBuilder();
-            updateVersion = reader.readLine();
-            zipFileAddress = reader.readLine();
-            String inputLine = reader.readLine();
+            
+            String inputLine = reader.readLine();           
+            curriculum = new HashMap<>();           
+            Pair<String,String> version;
+         
             while (inputLine != null) {
-                sb.append(inputLine);
-                sb.append(System.lineSeparator());
+    
+                String[] tmp = inputLine.split(";");         
+                version = new Pair<>(tmp[0].split("#")[1], tmp[1]); 
+                curriculum.put(tmp[0].split("#")[0], version);
                 inputLine = reader.readLine();
             }
-            reader.close();
-            updateDescription = sb.toString();
-            message += ("Current version: " + currentVerison + "\nUpdate version: " + updateVersion + "\n" + updateDescription + "\n");
-            updateMessage(message);
+           
+            String curr = currentVerison.split("#")[0];
+            
+            if(curriculum.containsKey(curr)){
+                System.out.println("Remote version: " + curriculum.get(curr).getLeft());   
+                updateVersion = curr+"#"+ curriculum.get(curr).getLeft();
+                remoteAddress = curriculum.get(curr).getRight();
+            }
 
+            message += ("Current version: " + currentVerison + "\nUpdate version: " + updateVersion + "\n");
+            updateMessage(message);
+            
+            
+            reader.close();
             if (!(currentVerison.equalsIgnoreCase(updateVersion))) {
                 return false;
             }
@@ -181,7 +203,7 @@ public class Updater extends Task {
             try {
                 message += ("Downloading new files (" + updateVersion + ")..." + "\n");
                 updateMessage(message);
-                String filePath = download(zipFileDestination, zipFileAddress, useProxy);
+                String filePath = download(zipFileDestination, remoteAddress, useProxy);
                 
                 message += ("File downloaded!\n");
                 updateMessage(message);
@@ -250,5 +272,31 @@ public class Updater extends Task {
 
         return null;
     }
+   
+  private class Pair<L,R> {
 
+  private final L left;
+  private final R right;
+
+  public Pair(L left, R right) {
+    this.left = left;
+    this.right = right;
+  }
+
+  public L getLeft() { return left; }
+  public R getRight() { return right; }
+
+  @Override
+  public int hashCode() { return left.hashCode() ^ right.hashCode(); }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof Pair)) return false;
+    Pair pairo = (Pair) o;
+    return this.left.equals(pairo.getLeft()) &&
+           this.right.equals(pairo.getRight());
+  }
+
+}
+    
 }
