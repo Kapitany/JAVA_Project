@@ -202,7 +202,7 @@ public class LogicalCurriculumHandler {
 
     private void addSpecificCredit(String creditType, int creditValue) {
         receiveCredits(creditValue);
-        for (int i = 0; i < numberOfCreditTypes; i++) {
+        /*for (int i = 0; i < numberOfCreditTypes; i++) {
             if (perTypeCounter.get(i).containsKey(creditType) && perTypeCounter.get(i).get(creditType) + creditValue <= creditTypes.get(i).get(creditType)) {
                 perTypeCounter.get(i).replace(creditType, perTypeCounter.get(i).get(creditType), perTypeCounter.get(i).get(creditType) + creditValue);
             } else if (perTypeCounter.get(i).containsKey(creditType)) {
@@ -214,7 +214,7 @@ public class LogicalCurriculumHandler {
                     }
                 }
             }
-        }
+        }*/
     }
 
     public void completeExtra(String subjectCode) {
