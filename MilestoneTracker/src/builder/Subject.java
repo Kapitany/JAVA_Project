@@ -48,13 +48,20 @@ public class Subject {
         return creditRequirement;
     }
 
+//    @Override
+//    public String toString() {
+//        return subjectName + "\n"
+//                + subjectCode + "\n"
+//                + creditValue + "\n"
+//                + Arrays.toString(requirements) + "\n"
+//                + subjectType + "\n"
+//                + creditRequirement;
+//    }
+
     @Override
     public String toString() {
-        return subjectName + "\n"
-                + subjectCode + "\n"
-                + creditValue + "\n"
-                + Arrays.toString(requirements) + "\n"
-                + subjectType + "\n"
-                + creditRequirement;
+        return subjectName;
     }
+    
+    
 }

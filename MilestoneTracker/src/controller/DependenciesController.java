@@ -2,6 +2,7 @@ package controller;
 
 import builder.Subject;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import static javafx.scene.input.KeyCode.BACK_SPACE;
+import javafx.scene.input.KeyEvent;
+import main.Launcher;
 
 /**
  * FXML Controller class
@@ -25,7 +30,7 @@ public class DependenciesController implements Initializable {
     @FXML
     TextField codeField;
     @FXML
-    ListView<String> resultList;
+    ListView<Subject> resultList;
     @FXML
     TextField subDataField;
     @FXML
@@ -35,8 +40,8 @@ public class DependenciesController implements Initializable {
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        resultList = new ListView<>();
-        ObservableList<String> results = FXCollections.observableArrayList("csoki", "sajt");
+        ObservableList<Subject> results = FXCollections.observableArrayList();
+        
         
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -46,10 +51,30 @@ public class DependenciesController implements Initializable {
                 resultList.getItems().clear();
                 subDataField.clear();
                 depDataField.clear();
-                resultList.setItems(results);
-                //resultList.setCellFactory();
             }
         });
+        
+        nameField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                resultList.getItems().clear();
+                results.clear();
+                for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
+                    for (Subject subject : list) {
+                        if (event.getCharacter().hashCode() == 8) {//ez a backspace kódja
+                            if (subject.getSubjectName().contains(nameField.getText())) {
+                                results.add(subject);
+                            }
+                        }
+                        else if (subject.getSubjectName().contains(nameField.getText() + event.getCharacter())) {
+                            results.add(subject);
+                        }
+                    }
+                }
+                resultList.setItems(results);
+            }
+        });
+        
     }    
     
 }
