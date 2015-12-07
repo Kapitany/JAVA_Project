@@ -13,10 +13,10 @@
       <TextField fx:id="codeField" layoutX="35.0" layoutY="89.0" promptText="Input subject code" />
       <ListView fx:id="resultList" layoutX="35.0" layoutY="157.0" prefHeight="342.0" prefWidth="200.0" />
       <Label layoutX="43.0" layoutY="505.0" text="Found subject(s)" />
-      <TextField fx:id="subDataField" editable="false" layoutX="259.0" layoutY="157.0" prefHeight="158.0" prefWidth="459.0" />
-      <TextField fx:id="depDataField" editable="false" layoutX="259.0" layoutY="332.0" prefHeight="167.0" prefWidth="459.0" />
       <Label layoutX="655.0" layoutY="140.0" text="Subject data" />
       <Label layoutX="643.0" layoutY="497.0" text="Dependencies" />
       <Button fx:id="clearButton" layoutX="35.0" layoutY="124.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Clear all" />
+      <TextArea fx:id="subDataField" editable="false" layoutX="259.0" layoutY="157.0" prefHeight="157.0" prefWidth="459.0" />
+      <TextArea fx:id="depDataField" editable="false" layoutX="259.0" layoutY="342.0" prefHeight="157.0" prefWidth="459.0" />
    </children>
 </AnchorPane>

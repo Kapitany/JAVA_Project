@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -31,16 +32,16 @@ public class DependenciesController implements Initializable {
     @FXML
     ListView<Subject> resultList;
     @FXML
-    TextField subDataField;
+    TextArea subDataField;
     @FXML
-    TextField depDataField;
+    TextArea depDataField;
     @FXML
     Button clearButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Subject> results = FXCollections.observableArrayList();
-
+        clearButton.setId("regbutton");
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -71,7 +72,7 @@ public class DependenciesController implements Initializable {
                 resultList.setItems(results);
             }
         });
-        
+
         codeField.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -96,7 +97,25 @@ public class DependenciesController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 subDataField.clear();
-                subDataField.appendText(resultList.getSelectionModel().getSelectedItem().toString());
+                subDataField.appendText("Subjectname: " + resultList.getSelectionModel().getSelectedItem().getSubjectName() + "\n");
+                subDataField.appendText("Subjectcode: " + resultList.getSelectionModel().getSelectedItem().getSubjectCode() + "\n");
+                subDataField.appendText("Subjecttype: " + resultList.getSelectionModel().getSelectedItem().getSubjectType() + "\n");
+                subDataField.appendText("Creditvalue: " + resultList.getSelectionModel().getSelectedItem().getCreditValue() + "\n");
+                
+                //depDataField.appendText("Credits required: " + resultList.getSelectionModel().getSelectedItem().getCreditRequirement() + "\n");
+                
+                for (ArrayList<Subject> list : Launcher.getGraphHandler().getGraphContainer()) {
+                    for (Subject subject : list) {
+                        String [] tmpArray = resultList.getSelectionModel().getSelectedItem().getRequirements();
+                        for (int i = 0; i < tmpArray.length; i++) {
+                            if (tmpArray[i].equals(subject.getSubjectCode())) {
+                                depDataField.appendText("Subjectname: " + subject.getSubjectName() + "\n");
+                                depDataField.appendText("Subjectcode: " + subject.getSubjectCode() + "\n\n");
+                            }
+                        }
+                    }
+                }
+                
             }
         });
     }

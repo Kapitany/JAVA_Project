@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -85,7 +86,8 @@ public class Launcher extends Application {
             
             Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
             Scene scene = new Scene(root);
-
+            primaryStage.getIcons().add(new Image("cap.png"));
+            scene.getStylesheets().add("TrackerStyle.css");
             primaryStage.setScene(scene);
             primaryStage.setTitle(handler.getCurriculumName());
 //            primaryStage.setMaximized(true);

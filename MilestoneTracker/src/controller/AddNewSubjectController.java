@@ -54,7 +54,7 @@ public class AddNewSubjectController implements Initializable {
         }
 
         informationField.setPromptText("First rule: Do not try to register a subject with an already stored subject code. Second rule: Fill all the fields! Third rule: The creditvalue and required credits must be numbers!");
-
+        registerButton.setId("regbutton");
         registerButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override

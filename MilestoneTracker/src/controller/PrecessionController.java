@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -121,8 +123,7 @@ public class PrecessionController implements Initializable {
                 "green"
         );
         
-        
-        pane.setStyle("-fx-border-color:#ff4444");
+        pane.setStyle("-fx-border-color:#000000");
 
         int numSemesters = Launcher.getGraphHandler().getNumSemesters();
         for (int i = 0; i < numSemesters/2+1; i++) {
@@ -137,6 +138,7 @@ public class PrecessionController implements Initializable {
             VBox tmpBox = new VBox();
             Label semesterCount = new Label((semester + 1) + ". félév");
             semesterCount.setStyle("-fx-font-weight: bold");
+            semesterCount.setUnderline(true);
             tmpBox.getChildren().add(semesterCount);
             
             for (int subj = 0; subj < subjectsPerSemester.get(semester).size(); subj++) {
@@ -158,7 +160,22 @@ public class PrecessionController implements Initializable {
                 tmpBox.setAlignment(Pos.CENTER);
                 
             }
-            
+            tmpBox.setOnMouseEntered(new EventHandler<MouseEvent>(){
+                @Override public void handle(MouseEvent e) {
+                tmpBox.setScaleX(1.1);
+                tmpBox.setScaleY(1.1);
+                //tmpBox.setId("tmpbig");
+                tmpBox.toFront();
+        }
+        });
+            tmpBox.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                tmpBox.setScaleX(1);
+                tmpBox.setScaleY(1);
+                //tmpBox.setId("tmpbig");
+                tmpBox.toBack();
+        }
+        });
             if(semester <= (numSemesters/2)){
                 pane.add(tmpBox, semester, 0);
             }else{

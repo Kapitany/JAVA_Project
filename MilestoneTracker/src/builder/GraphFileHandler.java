@@ -82,7 +82,7 @@ public class GraphFileHandler {
                     }
                     if (!isFound) {
                         String[] tmp = wantedSubject.split(":");
-                        Subject blankSubject = new Subject(tmp[0], "-", Integer.valueOf(tmp[1]), new String[0], tmp[0], 0);
+                        Subject blankSubject = new Subject(tmp[0], "*", Integer.valueOf(tmp[1]), new String[0], tmp[0], 0);
                         graphContainer.get(i).add(blankSubject);
                     }
                 }

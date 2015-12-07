@@ -40,7 +40,8 @@ public class UpdateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        btnUpdate.setId("regbutton");
         btnUpdate.setOnAction((ActionEvent event) -> {
             currentVersion = Launcher.getHandler().getCurriculumVersion();
             update();
