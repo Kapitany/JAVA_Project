@@ -73,7 +73,7 @@ public class Launcher extends Application {
             System.out.println("All received credits: " + handler.getCreditsReceived());
             System.out.println("to 100%: [at least]" + handler.getCreditsToReceive());
             System.out.println("----------------------------------------------------");
-            //System.out.println("Specific credits: " + handler.getPerTypeCounter());
+            System.out.println("Specific credits: " + handler.getPerTypeCounter());
             System.out.println("to 100%: " + handler.getCreditTypes());
             System.out.println("----------------------------------------------------");
             System.out.println("Overflow goes to: " + handler.getCreditOverflowTo());
@@ -90,8 +90,8 @@ public class Launcher extends Application {
             scene.getStylesheets().add("TrackerStyle.css");
             primaryStage.setScene(scene);
             primaryStage.setTitle(handler.getCurriculumName());
-//            primaryStage.setMaximized(true);
-//            primaryStage.setResizable(false);
+            primaryStage.setMaximized(true);        //opcionális, én jobban szeretem így <Alex>
+            primaryStage.setResizable(false);       // -||-
             primaryStage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
