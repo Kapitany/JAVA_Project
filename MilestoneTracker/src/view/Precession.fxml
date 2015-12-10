@@ -30,24 +30,11 @@
             </TitledPane>
           <TitledPane text="Diagrams">
                <content>
-                  <AnchorPane prefHeight="422.0" prefWidth="1380.0">
-                     <children>
-                        <AnchorPane layoutX="19.6" layoutY="18.6" prefHeight="422.0" prefWidth="1380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <PieChart fx:id="kot" labelsVisible="false" layoutX="14.0" layoutY="20.0" legendVisible="false" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                              <PieChart fx:id="dif1" labelsVisible="false" layoutX="258.0" layoutY="20.0" legendVisible="false" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                              <PieChart fx:id="dif2" labelsVisible="false" layoutX="356.0" layoutY="20.0" legendVisible="false" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                              <PieChart fx:id="szab" labelsVisible="false" layoutX="114.0" layoutY="20.0" legendVisible="false" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                              <Label alignment="CENTER" layoutX="14.0" layoutY="129.0" prefHeight="15.0" prefWidth="100.0" text="Kötlező" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="114.0" layoutY="129.0" prefHeight="15.0" prefWidth="100.0" text="Szabad" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="258.0" layoutY="129.0" prefHeight="15.0" prefWidth="100.0" text="DIF1" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="356.0" layoutY="129.0" prefHeight="15.0" prefWidth="100.0" text="DIF2" textAlignment="CENTER" />
-                              <PieChart fx:id="hum" labelsVisible="false" layoutX="456.0" layoutY="20.0" legendVisible="false" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                              <Label alignment="CENTER" layoutX="456.0" layoutY="129.0" prefHeight="15.0" prefWidth="100.0" text="Humán" textAlignment="CENTER" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
+                  <GridPane fx:id="graphPane">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </content>
           </TitledPane>
         </panes>

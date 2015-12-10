@@ -31,52 +31,8 @@ public class PrecessionController implements Initializable {
     GridPane pane;
     
     @FXML
-    public PieChart dif1;
-    
-    @FXML
-    public PieChart hum;
-    
-    @FXML
-    public PieChart dif2;
-    
-    @FXML
-    public PieChart szab;
-    
-    @FXML
-    public PieChart kot;
-    
-    @FXML
-     public StackedBarChart allDiagramm;
-    
-    ObservableList<PieChart.Data> kotChartDataInicializer
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Kész", 0),
-                        new PieChart.Data("Hátra van", 100));
-    
-    ObservableList<PieChart.Data> szabChartDataInicializer
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Kész", 0),
-                        new PieChart.Data("Hátra van", 100));
-    
-    ObservableList<PieChart.Data> dif1ChartDataInicializer
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Kész", 0),
-                        new PieChart.Data("Hátra van", 100));
-    
-    ObservableList<PieChart.Data> dif2ChartDataInicializer
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Kész", 0),
-                        new PieChart.Data("Hátra van", 100));
-    
-    ObservableList<PieChart.Data> humChartDataInicializer
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Kész", 0),
-                        new PieChart.Data("Hátra van", 100));
-    
-    
-    
-    
-    
+    GridPane graphPane;
+
     private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
         int i = 1;
         for (PieChart.Data data : pieChartData) {
@@ -88,40 +44,17 @@ public class PrecessionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        dif1.setData(dif1ChartDataInicializer);
-        dif2.setData(dif2ChartDataInicializer);
-        szab.setData(szabChartDataInicializer);
-        kot.setData(kotChartDataInicializer);
-        hum.setData(humChartDataInicializer);
+        //itt a diagrammos résznél még vannak problémák sajnos a megjelenítéssel is
+        for (int i=0; i<Launcher.getGraphHandler().getExtraCreditTypes().length; i++) {
+            ObservableList<PieChart.Data> kotChartDataInicializer = FXCollections.observableArrayList(
+                            new PieChart.Data("Kész", 0),
+                            new PieChart.Data("Hátra van", 100));
+            PieChart pieChart = new PieChart(kotChartDataInicializer);
+            pieChart.setData(kotChartDataInicializer);
+            applyCustomColorSequence( kotChartDataInicializer, "red", "green");
+            graphPane.addColumn(i, pieChart);
+        }
         
-        applyCustomColorSequence(
-                kotChartDataInicializer,
-                 "red",
-                "green"
-        );
-        
-        applyCustomColorSequence(
-                dif2ChartDataInicializer,
-                 "red",
-                "green"
-        );
-        
-        applyCustomColorSequence(
-                dif1ChartDataInicializer,
-                 "red",
-                "green"
-        );
-         applyCustomColorSequence(
-                szabChartDataInicializer,
-                 "red",
-                "green"
-        );
-         
-         applyCustomColorSequence(
-                humChartDataInicializer,
-                 "red",
-                "green"
-        );
         
         pane.setStyle("-fx-border-color:#000000");
 
